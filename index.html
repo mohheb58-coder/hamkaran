@@ -656,7 +656,194 @@
   <script>
     // تنظیمات اولیه
     const ADMIN_PASSWORD = "222564";
-    const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyrMn0ESjLTMerjYNal-hHCgmZHJMqIboiJ-fS2fyFnCs73nSdWWX16F4--0_BU5DdWMA/exec";
+    const WEBAPP_URL = "// =============================================
+// Google Apps Script - سیستم اطلاعات پرسنلی
+// مدرسه شهیدان نیاسری 1
+// نسخه اصلاح‌شده
+// =============================================
+
+function doGet(e) {
+  return handleRequest(e);
+}
+
+function doPost(e) {
+  return handleRequest(e);
+}
+
+function handleRequest(e) {
+  try {
+    const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = spreadsheet.getSheetByName("sheet1");
+
+    if (!sheet) {
+      return buildJsonpResponse({ status: "error", message: "شیت 'sheet1' پیدا نشد" }, e.parameter);
+    }
+
+    const allData = sheet.getDataRange().getValues();
+
+    if (allData.length === 0) {
+      return buildJsonpResponse([], e.parameter);
+    }
+
+    const headers = allData[0];
+    const dataRows = allData.slice(1);
+
+    // تبدیل سطرها به objects
+    const records = dataRows.map(row => {
+      const obj = {};
+      headers.forEach((header, index) => {
+        obj[header] = row[index] !== undefined ? row[index] : '';
+      });
+      return obj;
+    }).filter(record => record.firstName || record.lastName); // فقط رکوردهای معتبر
+
+    const params = e.parameter || {};
+    const action = params.action;
+
+    // ✅ اصلاح شد: دریافت تعداد پرسنل (این action قبلاً وجود نداشت!)
+    if (action === "getCount") {
+      return buildJsonpResponse({ count: records.length }, params);
+    }
+
+    // دریافت تمام رکوردها
+    if (action === "getAll") {
+      return buildJsonpResponse(records, params);
+    }
+
+    // جستجو بر اساس نام خانوادگی
+    if (action === "getByLastName") {
+      const lastName = (params.lastName || '').trim().toLowerCase();
+      const filtered = records.filter(r =>
+        (r.lastName || '').toLowerCase().includes(lastName)
+      );
+      return buildJsonpResponse(filtered, params);
+    }
+
+    // ثبت رکورد جدید
+    if (action === "create") {
+      try {
+        // بررسی تکراری نبودن کد پرسنلی یا کد ملی
+        const keyColumn = headers.indexOf("personnelCode") >= 0 ? "personnelCode" : "nationalId";
+        const keyIndex = headers.indexOf(keyColumn);
+        const newKey = (params[keyColumn] || '').trim();
+
+        if (newKey && keyIndex >= 0) {
+          const duplicate = records.find(r => String(r[keyColumn] || '').trim() === newKey);
+          if (duplicate) {
+            return buildJsonpResponse({
+              status: "error",
+              message: "این کد پرسنلی یا کد ملی قبلاً ثبت شده است"
+            }, params);
+          }
+        }
+
+        const newRow = headers.map(h => params[h] !== undefined ? params[h] : '');
+        sheet.appendRow(newRow);
+        SpreadsheetApp.flush();
+        return buildJsonpResponse({ status: "success", message: "رکورد با موفقیت ثبت شد" }, params);
+      } catch (error) {
+        Logger.log('Error in create: ' + error.toString());
+        return buildJsonpResponse({ status: "error", message: error.toString() }, params);
+      }
+    }
+
+    // ویرایش رکورد
+    if (action === "update") {
+      try {
+        const key = params.key;
+        const keyColumn = headers.indexOf("personnelCode") >= 0 ? "personnelCode" : "nationalId";
+        const keyIndex = headers.indexOf(keyColumn);
+
+        if (keyIndex < 0) {
+          return buildJsonpResponse({ status: "error", message: "ستون کلید پیدا نشد" }, params);
+        }
+
+        if (!key) {
+          return buildJsonpResponse({ status: "error", message: "کلید رکورد ارسال نشده" }, params);
+        }
+
+        let found = false;
+        for (let i = 1; i < allData.length; i++) {
+          if (String(allData[i][keyIndex]).trim() === String(key).trim()) {
+            // به‌روزرسانی سطر
+            headers.forEach((header, colIndex) => {
+              const value = params[header] !== undefined ? params[header] : '';
+              sheet.getRange(i + 1, colIndex + 1).setValue(value);
+            });
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
+          return buildJsonpResponse({ status: "error", message: "رکورد پیدا نشد" }, params);
+        }
+
+        SpreadsheetApp.flush();
+        return buildJsonpResponse({ status: "success", message: "رکورد با موفقیت ویرایش شد" }, params);
+      } catch (error) {
+        Logger.log('Error in update: ' + error.toString());
+        return buildJsonpResponse({ status: "error", message: error.toString() }, params);
+      }
+    }
+
+    // حذف رکورد
+    if (action === "delete") {
+      try {
+        const key = params.key;
+        const keyColumn = headers.indexOf("personnelCode") >= 0 ? "personnelCode" : "nationalId";
+        const keyIndex = headers.indexOf(keyColumn);
+
+        if (keyIndex < 0) {
+          return buildJsonpResponse({ status: "error", message: "ستون کلید پیدا نشد" }, params);
+        }
+
+        if (!key) {
+          return buildJsonpResponse({ status: "error", message: "کلید رکورد ارسال نشده" }, params);
+        }
+
+        let found = false;
+        // از آخر به جلو تا indexها عوض نشوند
+        for (let i = allData.length - 1; i >= 1; i--) {
+          if (String(allData[i][keyIndex]).trim() === String(key).trim()) {
+            sheet.deleteRow(i + 1);
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
+          return buildJsonpResponse({ status: "error", message: "رکورد پیدا نشد" }, params);
+        }
+
+        SpreadsheetApp.flush();
+        return buildJsonpResponse({ status: "success", message: "رکورد با موفقیت حذف شد" }, params);
+      } catch (error) {
+        Logger.log('Error in delete: ' + error.toString());
+        return buildJsonpResponse({ status: "error", message: error.toString() }, params);
+      }
+    }
+
+    // اگر action مشخص نشود، تمام رکوردها را برگردان
+    return buildJsonpResponse(records, params);
+
+  } catch (error) {
+    Logger.log('Error in handleRequest: ' + error.toString());
+    return buildJsonpResponse({
+      status: "error",
+      message: "خطای سرور: " + error.toString()
+    }, e.parameter || {});
+  }
+}
+
+function buildJsonpResponse(data, params) {
+  const callback = (params && params.callback) ? params.callback : 'callback';
+  const jsonString = JSON.stringify(data);
+  const output = ContentService
+    .createTextOutput(callback + '(' + jsonString + ')')
+    .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  return output;
+}";
     
     let allStaff = [];
     let filteredStaff = [];
