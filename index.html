@@ -656,7 +656,7 @@
   <script>
     // تنظیمات اولیه
     const ADMIN_PASSWORD = "222564";
-    const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyldLOfde0YQYtXrMN5buBrSXN0OULLcrnb8l8w-iEZBrszvjbLmCeuhn4iIFs-6HUf/exec";
+    const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyAOftQHbnsaBGX2QirlaM_vLLuRtkxUecOAr9gCKnm_KI7WeBc8sBqP3uYJ1c8UyH33Q/exec";
     
     let allStaff = [];
     let filteredStaff = [];
@@ -686,44 +686,45 @@
       new bootstrap.Toast(document.getElementById(id), { delay: 3000 }).show();
     }
 
+    // تابع کمکی برای ارسال درخواست به Apps Script با fetch
+    async function callAPI(params) {
+      const url = WEBAPP_URL + '?' + new URLSearchParams(params);
+      const resp = await fetch(url, { redirect: 'follow' });
+      const text = await resp.text();
+      // پاسخ ممکن است JSON خالص یا JSONP باشد - هر دو را پشتیبانی می‌کنیم
+      const clean = text.replace(/^[^\[{]*/, '').replace(/\);?\s*$/, '');
+      return JSON.parse(clean);
+    }
+
     // بارگذاری تعداد پرسنل برای صفحه اصلی
-    function loadStaffCountForMainPage() {
-      const url = WEBAPP_URL + '?action=getCount&callback=handleLoadCount';
-      const script = document.createElement('script');
-      window.handleLoadCount = function(data) {
-        const count = data.count || 0;
+    async function loadStaffCountForMainPage() {
+      try {
+        const data = await callAPI({ action: 'getCount' });
+        const count = data.count !== undefined ? data.count : (Array.isArray(data) ? data.length : 0);
         document.getElementById('totalStaffCount').textContent = count;
         updateLastUpdateTime();
-        if (document.head.contains(script)) document.head.removeChild(script);
-        delete window.handleLoadCount;
-      };
-      script.onerror = function() {
+      } catch (err) {
+        console.error('loadStaffCount error:', err);
         document.getElementById('totalStaffCount').textContent = 'اتصال ناموفق';
         updateLastUpdateTime();
-      };
-      script.src = url;
-      document.head.appendChild(script);
+      }
     }
 
     // بارگذاری همه داده‌ها
-    function loadAllData() {
-      const url = WEBAPP_URL + '?action=getAll&callback=handleLoadAll';
-      const script = document.createElement('script');
-      window.handleLoadAll = function(data) {
+    async function loadAllData() {
+      try {
+        const data = await callAPI({ action: 'getAll' });
         allStaff = Array.isArray(data) ? data : [];
         filteredStaff = [...allStaff];
         updateCounters();
-        if (document.head.contains(script)) document.head.removeChild(script);
-        delete window.handleLoadAll;
-      };
-      script.onerror = function() {
+        displaySearchResults();
+      } catch (err) {
+        console.error('loadAllData error:', err);
         showToast('خطا در دریافت داده‌ها', 'danger');
         allStaff = [];
         filteredStaff = [];
         updateCounters();
-      };
-      script.src = url;
-      document.head.appendChild(script);
+      }
     }
 
     // آپدیت شمارنده‌ها
@@ -1390,86 +1391,60 @@
     }
 
     // ثبت فرم معلم
-    function submitTeacherForm(e) {
+    async function submitTeacherForm(e) {
       e.preventDefault();
       const data = collectFormData('teacherForm');
-      
-      const cb = 'handleCreate' + Date.now();
-      const params = new URLSearchParams();
-      params.append('action', 'create');
-      params.append('callback', cb);
-      Object.entries(data).forEach(([k, v]) => params.append(k, v));
-      
-      const url = WEBAPP_URL + '?' + params;
-      const script = document.createElement('script');
-      window[cb] = function(json) {
+      const params = { action: 'create', ...data };
+      try {
+        const json = await callAPI(params);
         if (json?.status === 'success') {
           showToast('اطلاعات با موفقیت ثبت شد', 'success');
           document.getElementById('teacherForm').reset();
           setTimeout(() => {
-            loadStaffCountForMainPage(); // آپدیت تعداد در صفحه اصلی
-            loadAllData(); // آپدیت لیست داده‌ها
+            loadStaffCountForMainPage();
+            loadAllData();
             backToMain();
           }, 1500);
         } else {
           showToast('خطا در ثبت اطلاعات: ' + (json?.message || 'نامشخص'), 'danger');
         }
-        if (document.head.contains(script)) document.head.removeChild(script);
-        delete window[cb];
-      };
-      script.onerror = function() {
-        showToast('اطلاعات به صورت آفلاین ثبت شد', 'warning');
-        setTimeout(() => backToMain(), 1500);
-      };
-      script.src = url;
-      document.head.appendChild(script);
+      } catch (err) {
+        showToast('خطا در ارسال اطلاعات', 'danger');
+        console.error('submitTeacherForm error:', err);
+      }
     }
 
     // ثبت فرم مدیر
-    function submitAdminForm(e) {
+    async function submitAdminForm(e) {
       e.preventDefault();
       const data = collectFormData('adminForm');
       const key = data.personnelCode || data.nationalId;
-      
+
       if (!key) {
         showToast('کد پرسنلی یا کد ملی الزامی است', 'warning');
         return;
       }
-      
+
       const action = currentIndex === -1 ? 'create' : 'update';
-      const cb = 'handleAdmin' + Date.now();
-      const params = new URLSearchParams();
-      params.append('action', action);
-      params.append('callback', cb);
-      if (action === 'update') params.append('key', key);
-      Object.entries(data).forEach(([k, v]) => params.append(k, v));
-      
-      const url = WEBAPP_URL + '?' + params;
-      const script = document.createElement('script');
-      window[cb] = function(json) {
+      const params = { action, ...data };
+      if (action === 'update') params.key = key;
+
+      try {
+        const json = await callAPI(params);
         if (json?.status === 'success') {
           showToast(`اطلاعات با موفقیت ${action === 'create' ? 'ثبت' : 'ویرایش'} شد`, 'success');
           setTimeout(() => {
-            loadStaffCountForMainPage(); // آپدیت تعداد در صفحه اصلی
-            loadAllData(); // آپدیت لیست داده‌ها
+            loadStaffCountForMainPage();
+            loadAllData();
             backToSearch();
           }, 1000);
         } else {
-          showToast('خطا در ذخیره اطلاعات', 'danger');
+          showToast('خطا در ذخیره اطلاعات: ' + (json?.message || 'نامشخص'), 'danger');
         }
-        if (document.head.contains(script)) document.head.removeChild(script);
-        delete window[cb];
-      };
-      script.onerror = function() {
-        showToast(`اطلاعات به صورت آفلاین ${action === 'create' ? 'ثبت' : 'ویرایش'} شد`, 'warning');
-        setTimeout(() => {
-          loadStaffCountForMainPage();
-          loadAllData();
-          backToSearch();
-        }, 1000);
-      };
-      script.src = url;
-      document.head.appendChild(script);
+      } catch (err) {
+        showToast('خطا در ارسال اطلاعات', 'danger');
+        console.error('submitAdminForm error:', err);
+      }
     }
 
     // ویرایش رکورد
@@ -1482,48 +1457,40 @@
     }
 
     // حذف رکورد
-    function deleteRecord() {
+    async function deleteRecord() {
       if (currentIndex === -1) {
         showToast('ابتدا یک رکورد را انتخاب کنید', 'warning');
         return;
       }
-      
+
       if (!confirm('آیا از حذف این رکورد مطمئن هستید؟ این عمل قابل بازگشت نیست.')) {
         return;
       }
-      
+
       const data = collectFormData('adminForm');
       const key = data.personnelCode || data.nationalId;
-      
+
       if (!key) {
         showToast('رکورد معتبری انتخاب نشده است', 'warning');
         return;
       }
-      
-      const cb = 'handleDelete' + Date.now();
-      const params = new URLSearchParams();
-      params.append('action', 'delete');
-      params.append('key', key);
-      params.append('callback', cb);
-      
-      const url = WEBAPP_URL + '?' + params;
-      const script = document.createElement('script');
-      window[cb] = function(json) {
+
+      try {
+        const json = await callAPI({ action: 'delete', key });
         if (json?.status === 'success') {
           showToast('رکورد با موفقیت حذف شد', 'success');
           setTimeout(() => {
-            loadStaffCountForMainPage(); // آپدیت تعداد در صفحه اصلی
-            loadAllData(); // آپدیت لیست داده‌ها
+            loadStaffCountForMainPage();
+            loadAllData();
             backToSearch();
           }, 1000);
         } else {
-          showToast('خطا در حذف رکورد', 'danger');
+          showToast('خطا در حذف رکورد: ' + (json?.message || 'نامشخص'), 'danger');
         }
-        if (document.head.contains(script)) document.head.removeChild(script);
-        delete window[cb];
-      };
-      script.src = url;
-      document.head.appendChild(script);
+      } catch (err) {
+        showToast('خطا در ارسال درخواست حذف', 'danger');
+        console.error('deleteRecord error:', err);
+      }
     }
 
     // جستجوی زنده
