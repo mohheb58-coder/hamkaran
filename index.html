@@ -893,13 +893,30 @@
       displaySearchResults();
     }
 
+    // تبدیل تاریخ ISO به فرمت خوانا (1366/05/31)
+    function formatDateField(value) {
+      if (!value) return '';
+      // اگر فرمت ISO هست (شامل T یا Z)
+      if (typeof value === 'string' && (value.includes('T') || value.includes('Z'))) {
+        // فقط بخش تاریخ رو بگیر و / جایگزین - کن
+        var datePart = value.split('T')[0]; // مثلاً 1366-05-31
+        return datePart.replace(/-/g, '/');
+      }
+      // اگر با - جدا شده (1366-05-31 بدون T)
+      if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+        return value.replace(/-/g, '/');
+      }
+      return value;
+    }
+
     // پر کردن فرم با داده‌ها
     function fillForm(record, formId) {
       const form = document.getElementById(formId);
       Object.entries(record).forEach(([key, value]) => {
         const el = form.querySelector(`[name="${key}"]`);
         if (el) {
-          el.value = value || '';
+          var dateFields = ['birthDate','approveDate'];
+          el.value = dateFields.includes(key) ? formatDateField(value) : (value || '');
         }
       });
     }
@@ -1091,7 +1108,7 @@
             <div class="field"><div class="field-label">محل تولد</div><div class="field-value">${data.birthPlace || ''}</div></div>
           </div>
           <div class="row">
-            <div class="field"><div class="field-label">تاریخ تولد</div><div class="field-value">${data.birthDate || ''}</div></div>
+            <div class="field"><div class="field-label">تاریخ تولد</div><div class="field-value">${formatDateField(data.birthDate) || ''}</div></div>
             <div class="field"><div class="field-label">وضعیت تأهل</div><div class="field-value">${data.maritalStatus || ''}</div></div>
           </div>
           <div class="row">
@@ -1131,7 +1148,7 @@
             <div class="field"><div class="field-label">نام تاییدکننده</div><div class="field-value">${data.approverName || ''}</div></div>
           </div>
           <div class="row">
-            <div class="field"><div class="field-label">تاریخ تایید</div><div class="field-value">${data.approveDate || ''}</div></div>
+            <div class="field"><div class="field-label">تاریخ تایید</div><div class="field-value">${formatDateField(data.approveDate) || ''}</div></div>
             <div class="field"><div class="field-label">آدرس</div><div class="field-value">${data.address || ''}</div></div>
           </div>
           
@@ -1320,7 +1337,7 @@
               <div class="field"><div class="field-label">محل تولد</div><div class="field-value">${staff.birthPlace || ''}</div></div>
             </div>
             <div class="row">
-              <div class="field"><div class="field-label">تاریخ تولد</div><div class="field-value">${staff.birthDate || ''}</div></div>
+              <div class="field"><div class="field-label">تاریخ تولد</div><div class="field-value">${formatDateField(staff.birthDate) || ''}</div></div>
               <div class="field"><div class="field-label">وضعیت تأهل</div><div class="field-value">${staff.maritalStatus || ''}</div></div>
             </div>
             <div class="row">
@@ -1360,7 +1377,7 @@
               <div class="field"><div class="field-label">نام تاییدکننده</div><div class="field-value">${staff.approverName || ''}</div></div>
             </div>
             <div class="row">
-              <div class="field"><div class="field-label">تاریخ تایید</div><div class="field-value">${staff.approveDate || ''}</div></div>
+              <div class="field"><div class="field-label">تاریخ تایید</div><div class="field-value">${formatDateField(staff.approveDate) || ''}</div></div>
               <div class="field"><div class="field-label">آدرس</div><div class="field-value">${staff.address || ''}</div></div>
             </div>
             
