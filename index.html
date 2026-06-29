@@ -49,56 +49,31 @@
     .result-name { color: #667eea; font-size: 15px; font-weight: bold; }
     .result-details { color: #718096; font-size: 12px; margin-top: 3px; }
     .result-number { background: #e8f4ff; color: #4299e1; padding: 3px 10px; border-radius: 15px; font-size: 12px; font-weight: bold; }
-    .btn-group-search { display: flex; gap: 10px; }
-    .btn-group-search button { flex: 1; padding: 12px; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; color: white; }
+    .btn-group-search { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-group-search button { flex: 1; min-width: 120px; padding: 12px; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; color: white; }
     .btn-search { background: #667eea; }
     .btn-new { background: #48bb78; }
     .btn-print-all { background: #9f7aea; }
+    .btn-staff-list { background: #ed8936; }
     
     .form-page { padding: 30px 20px; }
     .form-container { background: white; border-radius: 15px; padding: 30px; max-width: 1000px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
     
-    /* هدر با دو عکس شهیدان */
     .school-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 25px;
-      padding-bottom: 20px;
-      border-bottom: 2px solid #f0f0f0;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 25px; padding-bottom: 20px; border-bottom: 2px solid #f0f0f0;
     }
     .martyrs-image {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #667eea;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+      border: 3px solid #667eea; display: flex; align-items: center; justify-content: center;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      flex-shrink: 0;
-      overflow: hidden;
+      flex-shrink: 0; overflow: hidden;
     }
     .martyrs-image.left { order: 1; }
     .martyrs-image.right { order: 3; }
-    .school-title-container {
-      order: 2;
-      text-align: center;
-      flex-grow: 1;
-      padding: 0 20px;
-    }
-    .school-title {
-      color: #667eea;
-      font-size: 24px;
-      font-weight: 700;
-      margin: 0;
-    }
-    .school-subtitle {
-      color: #333;
-      font-size: 16px;
-      margin: 5px 0 0 0;
-    }
+    .school-title-container { order: 2; text-align: center; flex-grow: 1; padding: 0 20px; }
+    .school-title { color: #667eea; font-size: 24px; font-weight: 700; margin: 0; }
+    .school-subtitle { color: #333; font-size: 16px; margin: 5px 0 0 0; }
     
     .form-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 20px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
     .form-title { color: #667eea; font-size: 24px; font-weight: 700; margin: 0; }
@@ -112,7 +87,6 @@
     .form-control:focus, .form-select:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.1); }
     textarea.form-control { min-height: 70px; resize: vertical; }
     
-    /* دکمه‌های فرم */
     .buttons-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-top: 30px; }
     .btn-custom { padding: 12px; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 14px; color: white; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 5px; }
     .btn-custom:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
@@ -124,178 +98,126 @@
     .btn-next { background: #a0aec0; }
     .btn-back-search { background: #718096; }
     
-    /* ناوبری */
     .nav-container { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; margin-top: 15px; }
     .counter-display { background: #edf2f7; border-radius: 10px; padding: 10px 20px; text-align: center; min-width: 150px; }
     .counter-current { font-size: 18px; font-weight: bold; color: #667eea; }
     .counter-total { font-size: 12px; color: #718096; }
-    
-    /* استایل برای چاپ کلی فرم‌ها */
-    .print-all-container { 
-      page-break-after: always; 
-      margin-bottom: 20px;
-      border: 1px solid #000;
-      padding: 15px;
+
+    /* ===== صفحه لیست همکاران ===== */
+    .staff-list-page { padding: 20px; min-height: 100vh; }
+    .staff-list-container { background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); padding: 30px; max-width: 1100px; margin: 0 auto; }
+
+    .staff-list-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
+    .staff-list-title { color: #667eea; font-size: 26px; font-weight: 700; margin: 0; display: flex; align-items: center; gap: 10px; }
+
+    /* انتخاب فیلدها */
+    .fields-selector { background: #f5f7ff; border: 1px solid #e0e7ff; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .fields-selector-title { color: #667eea; font-weight: 700; font-size: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .fields-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+    .field-checkbox-label {
+      display: flex; align-items: center; gap: 8px;
+      background: white; border: 2px solid #e0e7ff; border-radius: 10px;
+      padding: 10px 14px; cursor: pointer; transition: all 0.2s; font-size: 13px; font-weight: 600; color: #4a5568;
+      user-select: none;
     }
-    
+    .field-checkbox-label:hover { border-color: #667eea; background: #f0f3ff; }
+    .field-checkbox-label input[type="checkbox"] { display: none; }
+    .field-checkbox-label .check-icon { width: 18px; height: 18px; border-radius: 5px; border: 2px solid #c3ceea; background: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
+    .field-checkbox-label input[type="checkbox"]:checked ~ .check-icon,
+    .field-checkbox-label.checked .check-icon { background: #667eea; border-color: #667eea; }
+    .field-checkbox-label.checked { border-color: #667eea; background: #eef0ff; color: #667eea; }
+    .check-icon svg { display: none; }
+    .field-checkbox-label.checked .check-icon svg { display: block; }
+
+    /* جدول لیست */
+    .staff-table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid #e0e7ff; margin-bottom: 20px; }
+    .staff-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .staff-table thead tr { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+    .staff-table thead th { padding: 12px 14px; text-align: right; font-weight: 600; font-size: 13px; white-space: nowrap; }
+    .staff-table thead th:first-child { width: 45px; text-align: center; }
+    .staff-table tbody tr { border-bottom: 1px solid #f0f0f0; transition: background 0.15s; }
+    .staff-table tbody tr:hover { background: #f5f7ff; }
+    .staff-table tbody tr:last-child { border-bottom: none; }
+    .staff-table tbody td { padding: 10px 14px; color: #2d3748; vertical-align: middle; }
+    .staff-table tbody td:first-child { text-align: center; color: #9f7aea; font-weight: bold; }
+    .staff-table .empty-row td { text-align: center; padding: 40px; color: #a0aec0; font-size: 15px; }
+
+    /* اکشن‌های لیست */
+    .list-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-list-action { padding: 11px 20px; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 14px; color: white; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+    .btn-list-action:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .btn-list-print { background: #667eea; }
+    .btn-list-back { background: #718096; }
+    .btn-select-all { background: #48bb78; }
+    .btn-deselect-all { background: #a0aec0; }
+
+    /* شمارنده لیست */
+    .list-count-badge { background: #e8f4ff; color: #4299e1; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: bold; }
+
+    /* انتخاب جهت چاپ */
+    .print-orientation-bar { display: flex; align-items: center; gap: 12px; background: #fff8f0; border: 1px solid #fbd38d; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; flex-wrap: wrap; }
+    .print-orientation-label { font-size: 13px; font-weight: 700; color: #744210; display: flex; align-items: center; gap: 6px; }
+    .orient-btn { padding: 8px 18px; border: 2px solid #e0e0e0; border-radius: 8px; background: white; font-size: 13px; font-weight: 600; cursor: pointer; color: #4a5568; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+    .orient-btn:hover { border-color: #667eea; color: #667eea; }
+    .orient-btn.active { background: #667eea; border-color: #667eea; color: white; }
+
+    /* مودال فیلد جدید */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; }
+    .modal-overlay.open { display: flex; }
+    .modal-box { background: white; border-radius: 16px; padding: 30px; width: 90%; max-width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .modal-title { color: #667eea; font-size: 20px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .modal-input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; margin-bottom: 10px; font-family: Vazirmatn, Tahoma, sans-serif; }
+    .modal-input:focus { outline: none; border-color: #667eea; }
+    .modal-hint { font-size: 12px; color: #a0aec0; margin-bottom: 18px; }
+    .modal-actions { display: flex; gap: 10px; }
+    .modal-btn { flex: 1; padding: 11px; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 14px; color: white; font-family: Vazirmatn, Tahoma, sans-serif; }
+    .modal-btn-confirm { background: #48bb78; }
+    .modal-btn-cancel { background: #a0aec0; }
+
+    /* فیلد سفارشی - دکمه حذف */
+    .field-checkbox-label .del-field { margin-right: auto; color: #fc8181; font-size: 12px; padding: 2px 5px; border-radius: 4px; display: none; cursor: pointer; }
+    .field-checkbox-label:hover .del-field { display: inline-block; }
+
     @media print {
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { 
-        background: white; 
-        font-size: 10px; 
-        line-height: 1.2; 
-        font-family: Vazirmatn, Tahoma, sans-serif;
-      }
+      body { background: white; font-size: 10px; line-height: 1.3; font-family: Vazirmatn, Tahoma, sans-serif; }
       .page { display: block !important; }
       .form-page { padding: 5px !important; }
-      .form-container { 
-        box-shadow: none; 
-        border-radius: 0; 
-        padding: 8px !important; 
-        max-width: 100%;
-        border: 1px solid #000;
-      }
+      .form-container { box-shadow: none; border-radius: 0; padding: 8px !important; max-width: 100%; border: 1px solid #000; }
       .form-header { display: none; }
-      
-      /* هدر چاپ */
-      .school-header {
-        display: flex !important;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 15px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #000;
-      }
-      .martyrs-image {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid #000;
-        background: #f0f0f0;
-      }
-      .school-title-container {
-        text-align: center;
-        flex-grow: 1;
-        padding: 0 15px;
-      }
-      .school-title {
-        font-size: 16px;
-        font-weight: bold;
-        margin: 0;
-      }
-      .school-subtitle {
-        font-size: 12px;
-        margin: 3px 0 0 0;
-      }
-      
-      .card-section { 
-        background: white !important;
-        border: none !important;
-        padding: 0 !important;
-        margin-bottom: 0 !important;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0;
-      }
-      .section-title { 
-        grid-column: 1 / -1;
-        background: #f0f0f0;
-        padding: 5px 8px;
-        margin-bottom: 5px;
-        font-size: 11px;
-        font-weight: bold;
-        border-bottom: 1px solid #ccc;
-      }
-      .form-group-row { 
-        display: contents;
-      }
-      .form-group-row > div {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        border: 0.5px solid #000;
-        padding: 4px;
-        page-break-inside: avoid;
-      }
-      .form-label { 
-        font-size: 9px;
-        font-weight: 600;
-        text-align: right;
-        padding-right: 5px;
-      }
-      .form-control, .form-select, textarea { 
-        padding: 2px 3px !important;
-        font-size: 9px !important;
-        border: none !important;
-        height: auto !important;
-        min-height: 20px !important;
-        text-align: right;
-      }
+      .school-header { display: flex !important; align-items: center; justify-content: space-between; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #000; }
+      .martyrs-image { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #000; background: #f0f0f0; }
+      .school-title-container { text-align: center; flex-grow: 1; padding: 0 15px; }
+      .school-title { font-size: 16px; font-weight: bold; margin: 0; }
+      .school-subtitle { font-size: 12px; margin: 3px 0 0 0; }
+      .card-section { background: white !important; border: none !important; padding: 0 !important; margin-bottom: 0 !important; display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+      .section-title { grid-column: 1 / -1; background: #f0f0f0; padding: 5px 8px; margin-bottom: 5px; font-size: 11px; font-weight: bold; border-bottom: 1px solid #ccc; }
+      .form-group-row { display: contents; }
+      .form-group-row > div { display: grid; grid-template-columns: 1fr 1fr; border: 0.5px solid #000; padding: 4px; page-break-inside: avoid; }
+      .form-label { font-size: 9px; font-weight: 600; text-align: right; padding-right: 5px; }
+      .form-control, .form-select, textarea { padding: 2px 3px !important; font-size: 9px !important; border: none !important; height: auto !important; min-height: 20px !important; text-align: right; }
       textarea { min-height: 25px !important; }
       .buttons-group, .nav-container { display: none !important; }
-      
-      /* بخش امضا */
-      .approval-section {
-        margin-top: 20px;
-        padding-top: 10px;
-        border-top: 1px solid #000;
-        text-align: left;
-      }
-      .approval-line {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 30px;
-      }
-      .approval-space {
-        width: 200px;
-        border-bottom: 1px solid #000;
-        text-align: center;
-        padding-bottom: 5px;
-      }
-      
-      @page {
-        size: A4;
-        margin: 5mm;
-      }
+      @page { size: A4; margin: 5mm; }
     }
-    
+
     @media (max-width: 768px) {
       .form-group-row { grid-template-columns: 1fr; }
       .buttons-group { grid-template-columns: repeat(2, 1fr); }
-      .martyrs-image {
-        width: 80px;
-        height: 80px;
-      }
-      .school-title {
-        font-size: 18px;
-      }
-      .school-subtitle {
-        font-size: 14px;
-      }
-      .nav-container {
-        grid-template-columns: 1fr;
-        gap: 5px;
-      }
-      .counter-display {
-        order: -1;
-        margin-bottom: 10px;
-      }
+      .martyrs-image { width: 80px; height: 80px; }
+      .school-title { font-size: 18px; }
+      .school-subtitle { font-size: 14px; }
+      .nav-container { grid-template-columns: 1fr; gap: 5px; }
+      .counter-display { order: -1; margin-bottom: 10px; }
+      .staff-list-header { flex-direction: column; gap: 15px; align-items: flex-start; }
     }
-    
+
     @media (max-width: 576px) {
-      .school-header {
-        flex-direction: column;
-        text-align: center;
-      }
-      .martyrs-image {
-        margin-bottom: 10px;
-      }
-      .school-title-container {
-        padding: 10px 0;
-      }
-      .btn-group-search {
-        flex-direction: column;
-      }
+      .school-header { flex-direction: column; text-align: center; }
+      .martyrs-image { margin-bottom: 10px; }
+      .school-title-container { padding: 10px 0; }
+      .btn-group-search { flex-direction: column; }
+      .fields-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -304,23 +226,13 @@
   <div id="mainPage" class="page active main-page">
     <div class="main-container">
       <h1>📋 سیستم اطلاعات پرسنلی</h1>
-      
       <div class="staff-counter">
         <h4><i class="fas fa-users"></i> تعداد کل پرسنل</h4>
-        <div class="staff-count">
-          <span id="totalStaffCount">در حال بارگذاری...</span>
-        </div>
-        <div class="last-update">
-          آخرین به‌روزرسانی: <span id="lastUpdateTime">همین حالا</span>
-        </div>
+        <div class="staff-count"><span id="totalStaffCount">در حال بارگذاری...</span></div>
+        <div class="last-update">آخرین به‌روزرسانی: <span id="lastUpdateTime">همین حالا</span></div>
       </div>
-      
-      <button class="btn-panel btn-admin" onclick="showAdminPanel()">
-        <i class="fas fa-lock"></i> پنل مدیر
-      </button>
-      <button class="btn-panel btn-teacher" onclick="showTeacherPanel()">
-        <i class="fas fa-chalkboard-teacher"></i> پنل معلم
-      </button>
+      <button class="btn-panel btn-admin" onclick="showAdminPanel()"><i class="fas fa-lock"></i> پنل مدیر</button>
+      <button class="btn-panel btn-teacher" onclick="showTeacherPanel()"><i class="fas fa-chalkboard-teacher"></i> پنل معلم</button>
     </div>
   </div>
 
@@ -340,7 +252,6 @@
   <div id="searchPage" class="page search-page">
     <div class="search-container">
       <h1><i class="fas fa-search"></i> جستجوی پرسنل</h1>
-      
       <div class="result-summary">
         <div class="row text-center">
           <div class="col-6 count-box">
@@ -353,26 +264,95 @@
           </div>
         </div>
       </div>
-      
       <div class="search-input-wrapper">
         <input type="text" id="searchInput" placeholder="جستجو با نام، نام خانوادگی، کد پرسنلی یا کد ملی...">
       </div>
-      
       <div id="searchResults" class="search-results"></div>
-      
       <div class="btn-group-search">
-        <button class="btn-search" onclick="performSearch()">
-          <i class="fas fa-search"></i> جستجو
+        <button class="btn-search" onclick="performSearch()"><i class="fas fa-search"></i> جستجو</button>
+        <button class="btn-new" onclick="newRecord()"><i class="fas fa-plus"></i> ثبت جدید</button>
+        <button class="btn-staff-list" onclick="showStaffList()"><i class="fas fa-list"></i> لیست همکاران</button>
+        <button class="btn-print-all" onclick="printAllForms()"><i class="fas fa-print"></i> چاپ کلی فرم‌ها</button>
+        <button class="btn-back" onclick="backToPasswordPage()"><i class="fas fa-arrow-right"></i> بازگشت</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== صفحه لیست همکاران ===== -->
+  <div id="staffListPage" class="page staff-list-page">
+    <div class="staff-list-container">
+
+      <!-- هدر -->
+      <div class="staff-list-header">
+        <div class="staff-list-title"><i class="fas fa-users"></i> لیست همکاران</div>
+        <span class="list-count-badge" id="listCountBadge">۰ نفر</span>
+      </div>
+
+      <!-- نوار جهت چاپ -->
+      <div class="print-orientation-bar">
+        <div class="print-orientation-label"><i class="fas fa-print"></i> جهت چاپ:</div>
+        <button class="orient-btn active" id="orientPortrait" onclick="setOrientation('portrait')">
+          <i class="fas fa-file-alt"></i> عمودی (Portrait)
         </button>
-        <button class="btn-new" onclick="newRecord()">
-          <i class="fas fa-plus"></i> ثبت جدید
+        <button class="orient-btn" id="orientLandscape" onclick="setOrientation('landscape')">
+          <i class="fas fa-file-alt fa-rotate-90"></i> افقی (Landscape)
         </button>
-        <button class="btn-print-all" onclick="printAllForms()">
-          <i class="fas fa-print"></i> چاپ کلی فرم‌ها
+      </div>
+
+      <!-- انتخاب فیلدها -->
+      <div class="fields-selector">
+        <div class="fields-selector-title">
+          <i class="fas fa-sliders-h"></i>
+          انتخاب ستون‌های لیست
+        </div>
+        <div class="fields-grid" id="fieldsGrid">
+          <!-- فیلدها به صورت داینامیک درج می‌شوند -->
+        </div>
+        <div style="margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap;">
+          <button class="btn-list-action btn-select-all" onclick="selectAllFields()">
+            <i class="fas fa-check-double"></i> انتخاب همه
+          </button>
+          <button class="btn-list-action btn-deselect-all" onclick="deselectAllFields()">
+            <i class="fas fa-times"></i> حذف انتخاب‌ها
+          </button>
+          <button class="btn-list-action" style="background:#9f7aea;" onclick="openAddFieldModal()">
+            <i class="fas fa-plus-circle"></i> افزودن فیلد جدید
+          </button>
+        </div>
+      </div>
+
+      <!-- جدول -->
+      <div class="staff-table-wrapper">
+        <table class="staff-table" id="staffTable">
+          <thead id="staffTableHead"><tr></tr></thead>
+          <tbody id="staffTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- اکشن‌های پایین -->
+      <div class="list-actions">
+        <button class="btn-list-action btn-list-print" onclick="printStaffList()">
+          <i class="fas fa-print"></i> چاپ لیست
         </button>
-        <button class="btn-back" onclick="backToPasswordPage()">
-          <i class="fas fa-arrow-right"></i> بازگشت
+        <button class="btn-list-action btn-list-back" onclick="backToSearch()">
+          <i class="fas fa-arrow-right"></i> بازگشت به جستجو
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- مودال افزودن فیلد جدید -->
+  <div class="modal-overlay" id="addFieldModal">
+    <div class="modal-box">
+      <div class="modal-title"><i class="fas fa-plus-circle"></i> افزودن ستون جدید</div>
+      <label style="font-size:13px;font-weight:600;color:#4a5568;margin-bottom:6px;display:block;">عنوان ستون (نمایشی)</label>
+      <input type="text" class="modal-input" id="newFieldLabel" placeholder="مثال: شماره بیمه، پست سازمانی...">
+      <label style="font-size:13px;font-weight:600;color:#4a5568;margin-bottom:6px;display:block;">کلید فیلد (انگلیسی، بدون فاصله)</label>
+      <input type="text" class="modal-input" id="newFieldKey" placeholder="مثال: insuranceNo, orgPost">
+      <div class="modal-hint">⚠️ کلید فیلد باید با نام ستون در Google Sheets یکسان باشد</div>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn-confirm" onclick="confirmAddField()"><i class="fas fa-check"></i> افزودن</button>
+        <button class="modal-btn modal-btn-cancel" onclick="closeAddFieldModal()"><i class="fas fa-times"></i> انصراف</button>
       </div>
     </div>
   </div>
@@ -380,28 +360,19 @@
   <!-- صفحه فرم معلم -->
   <div id="teacherFormPage" class="page form-page">
     <div class="form-container">
-      <!-- هدر با دو عکس شهیدان -->
       <div class="school-header">
         <div class="martyrs-image left">
-          <img src="https://i.imgur.com/eCxFZCM.jpeg" 
-               alt="شهید نیاسری" 
-               style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
+          <img src="https://i.imgur.com/eCxFZCM.jpeg" alt="شهید نیاسری" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
         </div>
-        
         <div class="school-title-container">
           <h1 class="school-title">مدرسه شهیدان نیاسری 1</h1>
           <p class="school-subtitle">فرم اطلاعات پرسنلی</p>
         </div>
-        
         <div class="martyrs-image right">
-          <img src="https://i.imgur.com/VAsoxgf.jpeg" 
-               alt="شهید نیاسری" 
-               style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
+          <img src="https://i.imgur.com/VAsoxgf.jpeg" alt="شهید نیاسری" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
         </div>
       </div>
-      
       <form id="teacherForm" onsubmit="submitTeacherForm(event)">
-        <!-- مشخصات هویتی -->
         <div class="card-section">
           <div class="section-title"><i class="fas fa-user"></i> مشخصات هویتی</div>
           <div class="form-group-row">
@@ -424,8 +395,6 @@
             <div><label class="form-label">تعداد فرزندان</label><input type="number" class="form-control" name="childrenCount" min="0"></div>
           </div>
         </div>
-
-        <!-- مشخصات شغلی -->
         <div class="card-section">
           <div class="section-title"><i class="fas fa-briefcase"></i> مشخصات شغلی</div>
           <div class="form-group-row">
@@ -448,8 +417,6 @@
             <div><label class="form-label">نوع بیمه</label><select class="form-select" name="insuranceType"><option value=""></option><option>تأمین اجتماعی</option><option>خدمات درمانی</option><option>بیمه سلامت</option></select></div>
           </div>
         </div>
-
-        <!-- اطلاعات خانوادگی -->
         <div class="card-section">
           <div class="section-title"><i class="fas fa-home"></i> اطلاعات خانوادگی</div>
           <div class="form-group-row">
@@ -457,8 +424,6 @@
             <div><label class="form-label">شغل همسر</label><input type="text" class="form-control" name="spouseJob"></div>
           </div>
         </div>
-
-        <!-- تایید و امضا -->
         <div class="card-section">
           <div class="section-title"><i class="fas fa-check-circle"></i> تایید و امضا</div>
           <div class="form-group-row">
@@ -466,8 +431,6 @@
             <div><label class="form-label">تاریخ تایید</label><input type="text" class="form-control" name="approveDate" placeholder="1404/08/20"></div>
           </div>
         </div>
-
-        <!-- اطلاعات تماس -->
         <div class="card-section">
           <div class="section-title"><i class="fas fa-phone"></i> اطلاعات تماس</div>
           <div class="form-group-row">
@@ -479,17 +442,10 @@
             <div style="grid-column: 1/-1;"><label class="form-label">آدرس</label><textarea class="form-control" name="address" rows="3"></textarea></div>
           </div>
         </div>
-
         <div class="buttons-group">
-          <button type="submit" class="btn-custom btn-save">
-            <i class="fas fa-save"></i> ثبت
-          </button>
-          <button type="button" class="btn-custom btn-print" onclick="printForm()">
-            <i class="fas fa-print"></i> چاپ
-          </button>
-          <button type="button" class="btn-custom" style="background: #718096;" onclick="backToMain()">
-            <i class="fas fa-arrow-right"></i> بازگشت
-          </button>
+          <button type="submit" class="btn-custom btn-save"><i class="fas fa-save"></i> ثبت</button>
+          <button type="button" class="btn-custom btn-print" onclick="printForm()"><i class="fas fa-print"></i> چاپ</button>
+          <button type="button" class="btn-custom" style="background: #718096;" onclick="backToMain()"><i class="fas fa-arrow-right"></i> بازگشت</button>
         </div>
       </form>
     </div>
@@ -498,35 +454,23 @@
   <!-- صفحه فرم مدیر -->
   <div id="adminFormPage" class="page form-page">
     <div class="form-container">
-      <!-- هدر با دو عکس شهیدان -->
       <div class="school-header">
         <div class="martyrs-image left">
-          <img src="https://i.imgur.com/eCxFZCM.jpeg" 
-               alt="شهید نیاسری" 
-               style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
+          <img src="https://i.imgur.com/eCxFZCM.jpeg" alt="شهید نیاسری" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
         </div>
-        
         <div class="school-title-container">
           <h1 class="school-title">مدرسه شهیدان نیاسری 1</h1>
           <p class="school-subtitle">فرم اطلاعات پرسنلی</p>
         </div>
-        
         <div class="martyrs-image right">
-          <img src="https://i.imgur.com/VAsoxgf.jpeg" 
-               alt="شهید نیاسری" 
-               style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
+          <img src="https://i.imgur.com/VAsoxgf.jpeg" alt="شهید نیاسری" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
         </div>
       </div>
-      
       <div class="form-header">
         <h2 class="form-title">فرم اطلاعات پرسنلی</h2>
-        <div class="form-counter">
-          <span id="recordCounter">–</span>
-        </div>
+        <div class="form-counter"><span id="recordCounter">–</span></div>
       </div>
-      
       <form id="adminForm" onsubmit="submitAdminForm(event)">
-        <!-- مشخصات هویتی -->
         <div class="card-section">
           <div class="section-title"><i class="fas fa-user"></i> مشخصات هویتی</div>
           <div class="form-group-row">
@@ -549,8 +493,6 @@
             <div><label class="form-label">تعداد فرزندان</label><input type="number" class="form-control" name="childrenCount" min="0"></div>
           </div>
         </div>
-
-        <!-- مشخصات شغلی -->
         <div class="card-section">
           <div class="section-title"><i class="fas fa-briefcase"></i> مشخصات شغلی</div>
           <div class="form-group-row">
@@ -573,8 +515,6 @@
             <div><label class="form-label">نوع بیمه</label><select class="form-select" name="insuranceType"><option value=""></option><option>تأمین اجتماعی</option><option>خدمات درمانی</option><option>بیمه سلامت</option></select></div>
           </div>
         </div>
-
-        <!-- اطلاعات خانوادگی -->
         <div class="card-section">
           <div class="section-title"><i class="fas fa-home"></i> اطلاعات خانوادگی</div>
           <div class="form-group-row">
@@ -582,8 +522,6 @@
             <div><label class="form-label">شغل همسر</label><input type="text" class="form-control" name="spouseJob"></div>
           </div>
         </div>
-
-        <!-- تایید و امضا -->
         <div class="card-section">
           <div class="section-title"><i class="fas fa-check-circle"></i> تایید و امضا</div>
           <div class="form-group-row">
@@ -591,8 +529,6 @@
             <div><label class="form-label">تاریخ تایید</label><input type="text" class="form-control" name="approveDate" placeholder="1404/08/20"></div>
           </div>
         </div>
-
-        <!-- اطلاعات تماس -->
         <div class="card-section">
           <div class="section-title"><i class="fas fa-phone"></i> اطلاعات تماس</div>
           <div class="form-group-row">
@@ -604,99 +540,105 @@
             <div style="grid-column: 1/-1;"><label class="form-label">آدرس</label><textarea class="form-control" name="address" rows="3"></textarea></div>
           </div>
         </div>
-
         <div class="buttons-group">
-          <button type="submit" class="btn-custom btn-save">
-            <i class="fas fa-save"></i> ذخیره
-          </button>
-          <button type="button" class="btn-custom btn-edit" onclick="editRecord()">
-            <i class="fas fa-edit"></i> ویرایش
-          </button>
-          <button type="button" class="btn-custom btn-delete" onclick="deleteRecord()">
-            <i class="fas fa-trash"></i> حذف
-          </button>
-          <button type="button" class="btn-custom btn-print" onclick="printForm()">
-            <i class="fas fa-print"></i> چاپ
-          </button>
+          <button type="submit" class="btn-custom btn-save"><i class="fas fa-save"></i> ذخیره</button>
+          <button type="button" class="btn-custom btn-edit" onclick="editRecord()"><i class="fas fa-edit"></i> ویرایش</button>
+          <button type="button" class="btn-custom btn-delete" onclick="deleteRecord()"><i class="fas fa-trash"></i> حذف</button>
+          <button type="button" class="btn-custom btn-print" onclick="printForm()"><i class="fas fa-print"></i> چاپ</button>
         </div>
-        
-        <!-- ناوبری بین رکوردها -->
         <div class="nav-container">
-          <button type="button" class="btn-custom btn-prev" onclick="prevRecord()">
-            <i class="fas fa-arrow-right"></i> قبلی
-          </button>
-          
+          <button type="button" class="btn-custom btn-prev" onclick="prevRecord()"><i class="fas fa-arrow-right"></i> قبلی</button>
           <div class="counter-display">
-            <div class="counter-current">
-              <span id="recordCurrent">–</span>
-            </div>
-            <div class="counter-total">
-              از <span id="recordTotal">–</span> رکورد
-            </div>
+            <div class="counter-current"><span id="recordCurrent">–</span></div>
+            <div class="counter-total">از <span id="recordTotal">–</span> رکورد</div>
           </div>
-          
-          <button type="button" class="btn-custom btn-next" onclick="nextRecord()">
-            بعدی <i class="fas fa-arrow-left"></i>
-          </button>
-          
-          <button type="button" class="btn-custom btn-back-search" onclick="backToSearch()">
-            <i class="fas fa-search"></i> برگشت به جستجو
-          </button>
+          <button type="button" class="btn-custom btn-next">بعدی <i class="fas fa-arrow-left" onclick="nextRecord()"></i></button>
+          <button type="button" class="btn-custom btn-back-search" onclick="backToSearch()"><i class="fas fa-search"></i> برگشت به جستجو</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- ناحیه اعلان‌ها -->
   <div id="toastArea" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055;"></div>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    // تنظیمات اولیه
     const ADMIN_PASSWORD = "222564";
     const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyAOftQHbnsaBGX2QirlaM_vLLuRtkxUecOAr9gCKnm_KI7WeBc8sBqP3uYJ1c8UyH33Q/exec";
-    
+
     let allStaff = [];
     let filteredStaff = [];
     let currentIndex = -1;
 
-    // تابع نمایش اعلان
+    // ===== تعریف فیلدهای قابل انتخاب برای لیست =====
+    const ALL_FIELDS = [
+      { key: 'firstName',       label: 'نام',                  checked: true },
+      { key: 'lastName',        label: 'نام خانوادگی',         checked: true },
+      { key: 'nationalId',      label: 'کد ملی',               checked: true },
+      { key: 'personnelCode',   label: 'کد پرسنلی',            checked: true },
+      { key: 'salaryAccount',   label: 'شماره حساب',           checked: false },
+      { key: 'position',        label: 'سمت',                  checked: false },
+      { key: 'employmentType',  label: 'نوع استخدام',          checked: false },
+      { key: 'degree',          label: 'مدرک تحصیلی',          checked: false },
+      { key: 'major',           label: 'رشته تحصیلی',          checked: false },
+      { key: 'experienceYears', label: 'سابقه (سال)',          checked: false },
+      { key: 'grade',           label: 'پایه',                 checked: false },
+      { key: 'classNumber',     label: 'شماره کلاس',           checked: false },
+      { key: 'mobile',          label: 'شماره همراه',          checked: false },
+      { key: 'phone',           label: 'شماره تلفن',           checked: false },
+      { key: 'gender',          label: 'جنسیت',               checked: false },
+      { key: 'birthDate',       label: 'تاریخ تولد',          checked: false },
+      { key: 'maritalStatus',   label: 'وضعیت تأهل',          checked: false },
+      { key: 'insuranceType',   label: 'نوع بیمه',            checked: false },
+      { key: 'dutyType',        label: 'نوع اشتغال',          checked: false },
+      { key: 'fatherName',      label: 'نام پدر',              checked: false },
+    ];
+
+    // ===== توابع کمکی =====
     function showToast(msg, type = 'info') {
       const id = 't' + Date.now();
-      const colors = {
-        success: 'bg-success',
-        danger: 'bg-danger',
-        warning: 'bg-warning',
-        info: 'bg-info'
-      };
-      const html = `
-        <div id="${id}" class="toast text-white ${colors[type]} border-0" style="min-width: 250px;">
+      const colors = { success: 'bg-success', danger: 'bg-danger', warning: 'bg-warning', info: 'bg-info' };
+      const icons  = { success: 'check-circle', danger: 'exclamation-circle', warning: 'exclamation-triangle', info: 'info-circle' };
+      document.getElementById('toastArea').insertAdjacentHTML('beforeend', `
+        <div id="${id}" class="toast text-white ${colors[type]} border-0" style="min-width:250px;">
           <div class="d-flex">
-            <div class="toast-body">
-              <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'danger' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'} me-2"></i>
-              ${msg}
-            </div>
+            <div class="toast-body"><i class="fas fa-${icons[type]} me-2"></i>${msg}</div>
             <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
           </div>
-        </div>
-      `;
-      document.getElementById('toastArea').insertAdjacentHTML('beforeend', html);
+        </div>`);
       new bootstrap.Toast(document.getElementById(id), { delay: 3000 }).show();
     }
 
-    // تابع کمکی برای ارسال درخواست به Apps Script با fetch
     async function callAPI(params) {
       const url = WEBAPP_URL + '?' + new URLSearchParams(params);
       const resp = await fetch(url, { redirect: 'follow' });
       const text = await resp.text();
-      // پاسخ ممکن است JSON خالص یا JSONP باشد - هر دو را پشتیبانی می‌کنیم
       const clean = text.replace(/^[^\[{]*/, '').replace(/\);?\s*$/, '');
       return JSON.parse(clean);
     }
 
-    // بارگذاری تعداد پرسنل برای صفحه اصلی
+    function formatDateField(value) {
+      if (!value) return '';
+      if (typeof value === 'string' && (value.includes('T') || value.includes('Z'))) {
+        return value.split('T')[0].replace(/-/g, '/');
+      }
+      if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+        return value.replace(/-/g, '/');
+      }
+      return value;
+    }
+
+    function updateLastUpdateTime() {
+      const now = new Date();
+      const el = document.getElementById('lastUpdateTime');
+      if (el) {
+        el.textContent = `${now.toLocaleDateString('fa-IR')} ساعت ${now.toLocaleTimeString('fa-IR', {hour:'2-digit',minute:'2-digit'})}`;
+      }
+    }
+
+    // ===== بارگذاری داده =====
     async function loadStaffCountForMainPage() {
       try {
         const data = await callAPI({ action: 'getCount' });
@@ -704,13 +646,11 @@
         document.getElementById('totalStaffCount').textContent = count;
         updateLastUpdateTime();
       } catch (err) {
-        console.error('loadStaffCount error:', err);
         document.getElementById('totalStaffCount').textContent = 'اتصال ناموفق';
         updateLastUpdateTime();
       }
     }
 
-    // بارگذاری همه داده‌ها
     async function loadAllData() {
       try {
         const data = await callAPI({ action: 'getAll' });
@@ -719,78 +659,36 @@
         updateCounters();
         displaySearchResults();
       } catch (err) {
-        console.error('loadAllData error:', err);
         showToast('خطا در دریافت داده‌ها', 'danger');
-        allStaff = [];
-        filteredStaff = [];
+        allStaff = []; filteredStaff = [];
         updateCounters();
       }
     }
 
-    // آپدیت شمارنده‌ها
     function updateCounters() {
-      // تعداد در صفحه جستجو
-      const totalSearchEl = document.getElementById('totalCountSearch');
-      if (totalSearchEl) {
-        totalSearchEl.textContent = allStaff.length;
-      }
-      
-      // تعداد نتایج جستجو
-      const searchCountEl = document.getElementById('searchResultCount');
-      if (searchCountEl) {
-        searchCountEl.textContent = filteredStaff.length;
-      }
-      
-      // آپدیت شمارنده ناوبری
+      const t = document.getElementById('totalCountSearch');
+      const s = document.getElementById('searchResultCount');
+      if (t) t.textContent = allStaff.length;
+      if (s) s.textContent = filteredStaff.length;
       updateCounter();
-      
-      // آپدیت تعداد در صفحه اصلی هم
       document.getElementById('totalStaffCount').textContent = allStaff.length;
     }
 
-    // آپدیت زمان آخرین به‌روزرسانی
-    function updateLastUpdateTime() {
-      const now = new Date();
-      const timeEl = document.getElementById('lastUpdateTime');
-      if (timeEl) {
-        const timeString = now.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
-        const dateString = now.toLocaleDateString('fa-IR');
-        timeEl.textContent = `${dateString} ساعت ${timeString}`;
-      }
-    }
+    // ===== مدیریت صفحات =====
+    function hideAllPages() { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); }
+    function showAdminPanel() { hideAllPages(); document.getElementById('passwordPage').classList.add('active'); }
+    function showTeacherPanel() { hideAllPages(); document.getElementById('teacherFormPage').classList.add('active'); document.getElementById('teacherForm').reset(); }
+    function backToMain() { hideAllPages(); document.getElementById('mainPage').classList.add('active'); document.getElementById('passwordInput').value = ''; loadStaffCountForMainPage(); }
+    function backToPasswordPage() { hideAllPages(); document.getElementById('passwordPage').classList.add('active'); document.getElementById('searchInput').value = ''; filteredStaff = [...allStaff]; updateCounters(); }
 
-    // مدیریت صفحات
-    function showAdminPanel() {
+    function backToSearch() {
       hideAllPages();
-      document.getElementById('passwordPage').classList.add('active');
-    }
-
-    function showTeacherPanel() {
-      hideAllPages();
-      document.getElementById('teacherFormPage').classList.add('active');
-      document.getElementById('teacherForm').reset();
-    }
-
-    function hideAllPages() {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    }
-
-    function backToMain() {
-      hideAllPages();
-      document.getElementById('mainPage').classList.add('active');
-      document.getElementById('passwordInput').value = '';
-      loadStaffCountForMainPage(); // بارگذاری مجدد تعداد برای صفحه اصلی
-    }
-
-    function backToPasswordPage() {
-      hideAllPages();
-      document.getElementById('passwordPage').classList.add('active');
+      document.getElementById('searchPage').classList.add('active');
       document.getElementById('searchInput').value = '';
       filteredStaff = [...allStaff];
-      updateCounters();
+      displaySearchResults();
     }
 
-    // بررسی رمز عبور
     function checkPassword() {
       const pwd = document.getElementById('passwordInput').value;
       if (pwd === ADMIN_PASSWORD) {
@@ -807,758 +705,487 @@
       }
     }
 
-    // جستجو
+    // ===== جستجو =====
     function performSearch() {
       const q = document.getElementById('searchInput').value.trim().toLowerCase();
-      
-      if (!q) {
-        filteredStaff = [...allStaff];
-      } else {
-        filteredStaff = allStaff.filter(item => {
-          const lastName = String(item.lastName || '').toLowerCase();
-          const firstName = String(item.firstName || '').toLowerCase();
-          const code = String(item.personnelCode || '').toLowerCase();
-          const nationalId = String(item.nationalId || '').toLowerCase();
-          
-          return lastName.includes(q) || 
-                 firstName.includes(q) || 
-                 code.includes(q) || 
-                 nationalId.includes(q);
-        });
-      }
-      
+      filteredStaff = !q ? [...allStaff] : allStaff.filter(item =>
+        [item.lastName, item.firstName, item.personnelCode, item.nationalId]
+          .some(v => String(v || '').toLowerCase().includes(q))
+      );
       displaySearchResults();
     }
 
-    // نمایش نتایج جستجو
     function displaySearchResults() {
-      const resultsDiv = document.getElementById('searchResults');
-      const searchCountEl = document.getElementById('searchResultCount');
-      
-      searchCountEl.textContent = filteredStaff.length;
-      
-      if (filteredStaff.length === 0) {
-        resultsDiv.innerHTML = `
-          <div class="text-center p-5" style="color: #999;">
-            <i class="fas fa-search" style="font-size: 40px; margin-bottom: 15px; opacity: 0.5;"></i>
-            <p style="font-size: 16px; margin-bottom: 5px;">نتیجه‌ای یافت نشد</p>
-            <small>متن جستجو را تغییر دهید</small>
-          </div>
-        `;
+      const div = document.getElementById('searchResults');
+      const sc  = document.getElementById('searchResultCount');
+      if (sc) sc.textContent = filteredStaff.length;
+      if (!filteredStaff.length) {
+        div.innerHTML = `<div class="text-center p-5" style="color:#999;"><i class="fas fa-search" style="font-size:40px;margin-bottom:15px;opacity:0.5;"></i><p style="font-size:16px;">نتیجه‌ای یافت نشد</p></div>`;
         return;
       }
-      
-      resultsDiv.innerHTML = filteredStaff.map((item, idx) => `
+      div.innerHTML = filteredStaff.map((item, idx) => `
         <div class="search-result-item" onclick="selectRecord(${idx})">
           <div class="result-info">
             <div>
-              <div class="result-name">${item.firstName || ''} ${item.lastName || ''}</div>
-              <div class="result-details">
-                کد: ${item.personnelCode || '–'} | 
-                ملی: ${item.nationalId || '–'} | 
-                سمت: ${item.position || 'نامشخص'}
-              </div>
+              <div class="result-name">${item.firstName||''} ${item.lastName||''}</div>
+              <div class="result-details">کد: ${item.personnelCode||'–'} | ملی: ${item.nationalId||'–'} | سمت: ${item.position||'نامشخص'}</div>
             </div>
-            <div class="result-number">#${idx + 1}</div>
+            <div class="result-number">#${idx+1}</div>
           </div>
-        </div>
-      `).join('');
+        </div>`).join('');
     }
 
-    // انتخاب رکورد
     function selectRecord(idx) {
       currentIndex = idx;
       fillForm(filteredStaff[idx], 'adminForm');
       hideAllPages();
       document.getElementById('adminFormPage').classList.add('active');
       updateCounter();
-      showToast(`رکورد ${idx + 1} از ${filteredStaff.length} نمایش داده شد`, 'info');
     }
 
-    // ثبت رکورد جدید
     function newRecord() {
       currentIndex = -1;
       hideAllPages();
       document.getElementById('adminFormPage').classList.add('active');
       document.getElementById('adminForm').reset();
       updateCounter();
-      showToast('فرم جدید برای ثبت اطلاعات', 'info');
     }
 
-    function backToSearch() {
-      hideAllPages();
-      document.getElementById('searchPage').classList.add('active');
-      document.getElementById('searchInput').value = '';
-      filteredStaff = [...allStaff];
-      displaySearchResults();
-    }
-
-    // تبدیل تاریخ ISO به فرمت خوانا (1366/05/31)
-    function formatDateField(value) {
-      if (!value) return '';
-      // اگر فرمت ISO هست (شامل T یا Z)
-      if (typeof value === 'string' && (value.includes('T') || value.includes('Z'))) {
-        // فقط بخش تاریخ رو بگیر و / جایگزین - کن
-        var datePart = value.split('T')[0]; // مثلاً 1366-05-31
-        return datePart.replace(/-/g, '/');
-      }
-      // اگر با - جدا شده (1366-05-31 بدون T)
-      if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
-        return value.replace(/-/g, '/');
-      }
-      return value;
-    }
-
-    // پر کردن فرم با داده‌ها
     function fillForm(record, formId) {
       const form = document.getElementById(formId);
       Object.entries(record).forEach(([key, value]) => {
         const el = form.querySelector(`[name="${key}"]`);
-        if (el) {
-          var dateFields = ['birthDate','approveDate'];
-          el.value = dateFields.includes(key) ? formatDateField(value) : (value || '');
-        }
+        if (el) el.value = ['birthDate','approveDate'].includes(key) ? formatDateField(value) : (value||'');
       });
     }
 
-    // جمع‌آوری داده‌های فرم
     function collectFormData(formId) {
       const data = {};
-      const form = document.getElementById(formId);
-      const formData = new FormData(form);
-      for (let [key, value] of formData.entries()) {
-        data[key] = value;
-      }
+      const fd = new FormData(document.getElementById(formId));
+      for (let [k,v] of fd.entries()) data[k] = v;
       return data;
     }
 
-    // آپدیت شمارنده ناوبری
     function updateCounter() {
-      const counterEl = document.getElementById('recordCounter');
-      const currentEl = document.getElementById('recordCurrent');
-      const totalEl = document.getElementById('recordTotal');
-      
+      const ce = document.getElementById('recordCounter');
+      const cur = document.getElementById('recordCurrent');
+      const tot = document.getElementById('recordTotal');
       if (currentIndex >= 0 && filteredStaff.length > 0) {
-        counterEl.textContent = `${currentIndex + 1} از ${filteredStaff.length}`;
-        currentEl.textContent = currentIndex + 1;
-        totalEl.textContent = filteredStaff.length;
+        if (ce) ce.textContent = `${currentIndex+1} از ${filteredStaff.length}`;
+        if (cur) cur.textContent = currentIndex+1;
+        if (tot) tot.textContent = filteredStaff.length;
       } else {
-        counterEl.textContent = '–';
-        currentEl.textContent = '–';
-        totalEl.textContent = filteredStaff.length;
+        if (ce) ce.textContent = '–';
+        if (cur) cur.textContent = '–';
+        if (tot) tot.textContent = filteredStaff.length;
       }
     }
 
-    // پیمایش بین رکوردها
     function nextRecord() {
-      if (filteredStaff.length === 0) {
-        showToast('رکوردی برای پیمایش وجود ندارد', 'warning');
-        return;
-      }
-      
-      currentIndex = (currentIndex + 1) % filteredStaff.length;
+      if (!filteredStaff.length) return;
+      currentIndex = (currentIndex+1) % filteredStaff.length;
       fillForm(filteredStaff[currentIndex], 'adminForm');
       updateCounter();
     }
 
     function prevRecord() {
-      if (filteredStaff.length === 0) {
-        showToast('رکوردی برای پیمایش وجود ندارد', 'warning');
-        return;
-      }
-      
-      currentIndex = (currentIndex - 1 + filteredStaff.length) % filteredStaff.length;
+      if (!filteredStaff.length) return;
+      currentIndex = (currentIndex-1+filteredStaff.length) % filteredStaff.length;
       fillForm(filteredStaff[currentIndex], 'adminForm');
       updateCounter();
     }
 
-    // چاپ فرم تکی
+    // ===== چاپ فرم تکی =====
     function printForm() {
-      const form = document.getElementById(
-        document.getElementById('adminFormPage').classList.contains('active') 
-          ? 'adminForm' 
-          : 'teacherForm'
-      );
-      
-      const data = collectFormData(form.id);
-      printSingleForm(data);
+      const formId = document.getElementById('adminFormPage').classList.contains('active') ? 'adminForm' : 'teacherForm';
+      printSingleForm(collectFormData(formId));
     }
 
-    // چاپ یک فرم
     function printSingleForm(data) {
       const printDate = new Date().toLocaleDateString('fa-IR');
-      const printTime = new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
-      
-      let html = `
-        <html dir="rtl">
-        <head>
-          <meta charset="utf-8">
-          <style>
-            * { margin: 0; padding: 0; font-family: Vazirmatn, Tahoma, Arial; }
-            body { font-size: 11px; line-height: 1.4; padding: 10px; }
-            .container { border: 2px solid #000; padding: 15px; margin-bottom: 20px; }
-            .print-header {
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              margin-bottom: 15px;
-              padding-bottom: 10px;
-              border-bottom: 2px solid #000;
-            }
-            .martyrs-image {
-              width: 80px;
-              height: 80px;
-              border-radius: 50%;
-              object-fit: cover;
-              border: 2px solid #000;
-              background: #f0f0f0;
-              flex-shrink: 0;
-              overflow: hidden;
-            }
-            .school-title-container {
-              text-align: center;
-              flex-grow: 1;
-              padding: 0 15px;
-            }
-            .school-title {
-              font-size: 18px;
-              font-weight: bold;
-              margin: 0;
-            }
-            .school-subtitle {
-              font-size: 14px;
-              margin: 5px 0 0 0;
-              color: #333;
-            }
-            .print-info {
-              text-align: left;
-              font-size: 10px;
-              color: #666;
-              margin-bottom: 15px;
-              border-bottom: 1px solid #ddd;
-              padding-bottom: 5px;
-            }
-            .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-bottom: 0; }
-            .field { border: 1px solid #000; padding: 8px; display: flex; }
-            .field-label { font-weight: bold; width: 40%; text-align: right; padding-left: 10px; }
-            .field-value { width: 60%; text-align: right; border-left: 1px solid #000; padding-right: 8px; }
-            .approval-section {
-              margin-top: 30px;
-              padding-top: 15px;
-              border-top: 1px solid #000;
-              text-align: left;
-            }
-            .approval-line {
-              display: flex;
-              justify-content: space-between;
-              margin-top: 30px;
-            }
-            .approval-space {
-              width: 200px;
-              border-bottom: 1px solid #000;
-              text-align: center;
-              padding-bottom: 5px;
-            }
-            @media print { 
-              body { padding: 0; margin: 0; }
-              .container { border: 1px solid #000; page-break-inside: avoid; }
-              .print-header { border-bottom: 2px solid #000; }
-            }
-          </style>
-        </head>
-        <body>
-        <div class="container">
-          <div class="print-header">
-            <div class="martyrs-image">
-              <img src="https://i.imgur.com/eCxFZCM.jpeg" 
-                   alt="شهید نیاسری" 
-                   style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
-            </div>
-            
-            <div class="school-title-container">
-              <h1 class="school-title">مدرسه شهیدان نیاسری 1</h1>
-              <h2 class="school-subtitle">فرم اطلاعات پرسنلی</h2>
-            </div>
-            
-            <div class="martyrs-image">
-              <img src="https://i.imgur.com/VAsoxgf.jpeg" 
-                   alt="شهید نیاسری" 
-                   style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
-            </div>
-          </div>
-          
-          <div class="print-info">
-            تاریخ چاپ: ${printDate} - ساعت: ${printTime}
-          </div>
-          
-          <div class="row">
-            <div class="field"><div class="field-label">نام</div><div class="field-value">${data.firstName || ''}</div></div>
-            <div class="field"><div class="field-label">کد پرسنلی</div><div class="field-value">${data.personnelCode || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">نام خانوادگی</div><div class="field-value">${data.lastName || ''}</div></div>
-            <div class="field"><div class="field-label">کد ملی</div><div class="field-value">${data.nationalId || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">نام پدر</div><div class="field-value">${data.fatherName || ''}</div></div>
-            <div class="field"><div class="field-label">جنسیت</div><div class="field-value">${data.gender || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">محل صدور</div><div class="field-value">${data.issuePlace || ''}</div></div>
-            <div class="field"><div class="field-label">محل تولد</div><div class="field-value">${data.birthPlace || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">تاریخ تولد</div><div class="field-value">${formatDateField(data.birthDate) || ''}</div></div>
-            <div class="field"><div class="field-label">وضعیت تأهل</div><div class="field-value">${data.maritalStatus || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">تعداد فرزندان</div><div class="field-value">${data.childrenCount || ''}</div></div>
-            <div class="field"><div class="field-label">سمت</div><div class="field-value">${data.position || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">نوع استخدام</div><div class="field-value">${data.employmentType || ''}</div></div>
-            <div class="field"><div class="field-label">مدرک تحصیلی</div><div class="field-value">${data.degree || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">رشته تحصیلی</div><div class="field-value">${data.major || ''}</div></div>
-            <div class="field"><div class="field-label">سابقه</div><div class="field-value">${data.experienceYears || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">نوع اشتغال</div><div class="field-value">${data.dutyType || ''}</div></div>
-            <div class="field"><div class="field-label">پایه</div><div class="field-value">${data.grade || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">شماره کلاس</div><div class="field-value">${data.classNumber || ''}</div></div>
-            <div class="field"><div class="field-label">رابط</div><div class="field-value">${data.liaison || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">شماره حساب</div><div class="field-value">${data.salaryAccount || ''}</div></div>
-            <div class="field"><div class="field-label">نوع بیمه</div><div class="field-value">${data.insuranceType || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">نام همسر</div><div class="field-value">${data.spouseName || ''}</div></div>
-            <div class="field"><div class="field-label">شغل همسر</div><div class="field-value">${data.spouseJob || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">شماره همراه</div><div class="field-value">${data.mobile || ''}</div></div>
-            <div class="field"><div class="field-label">شماره تلفن</div><div class="field-value">${data.phone || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">کد پستی</div><div class="field-value">${data.postalCode || ''}</div></div>
-            <div class="field"><div class="field-label">نام تاییدکننده</div><div class="field-value">${data.approverName || ''}</div></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="field-label">تاریخ تایید</div><div class="field-value">${formatDateField(data.approveDate) || ''}</div></div>
-            <div class="field"><div class="field-label">آدرس</div><div class="field-value">${data.address || ''}</div></div>
-          </div>
-          
-          <div class="approval-section">
-            <div class="approval-line">
-              <div class="approval-space">امضاء کارمند</div>
-              <div class="approval-space">امضاء مسئول</div>
-            </div>
-          </div>
+      const printTime = new Date().toLocaleTimeString('fa-IR', {hour:'2-digit',minute:'2-digit'});
+      const html = `<html dir="rtl"><head><meta charset="utf-8"><style>
+        *{margin:0;padding:0;font-family:Vazirmatn,Tahoma,Arial;}body{font-size:11px;line-height:1.4;padding:10px;}
+        .container{border:2px solid #000;padding:15px;margin-bottom:20px;}
+        .print-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px;padding-bottom:10px;border-bottom:2px solid #000;}
+        .martyrs-image{width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid #000;flex-shrink:0;overflow:hidden;}
+        .school-title-container{text-align:center;flex-grow:1;padding:0 15px;}
+        .school-title{font-size:18px;font-weight:bold;margin:0;}
+        .school-subtitle{font-size:14px;margin:5px 0 0 0;color:#333;}
+        .print-info{text-align:left;font-size:10px;color:#666;margin-bottom:15px;border-bottom:1px solid #ddd;padding-bottom:5px;}
+        .row{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+        .field{border:1px solid #000;padding:8px;display:flex;}
+        .field-label{font-weight:bold;width:40%;text-align:right;padding-left:10px;}
+        .field-value{width:60%;text-align:right;border-left:1px solid #000;padding-right:8px;}
+        .approval-section{margin-top:30px;padding-top:15px;border-top:1px solid #000;}
+        .approval-line{display:flex;justify-content:space-between;margin-top:30px;}
+        .approval-space{width:200px;border-bottom:1px solid #000;text-align:center;padding-bottom:5px;}
+        @media print{body{padding:0;margin:0;}@page{size:A4;margin:5mm;}}
+      </style></head><body><div class="container">
+        <div class="print-header">
+          <div class="martyrs-image"><img src="https://i.imgur.com/eCxFZCM.jpeg" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"></div>
+          <div class="school-title-container"><h1 class="school-title">مدرسه شهیدان نیاسری 1</h1><h2 class="school-subtitle">فرم اطلاعات پرسنلی</h2></div>
+          <div class="martyrs-image"><img src="https://i.imgur.com/VAsoxgf.jpeg" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"></div>
         </div>
-        </body>
-        </html>
-      `;
-      
-      const printWindow = window.open('', '_blank', 'width=800,height=600');
-      printWindow.document.write(html);
-      printWindow.document.close();
-      setTimeout(() => {
-        printWindow.print();
-      }, 250);
+        <div class="print-info">تاریخ چاپ: ${printDate} - ساعت: ${printTime}</div>
+        ${[
+          ['نام',data.firstName],['کد پرسنلی',data.personnelCode],
+          ['نام خانوادگی',data.lastName],['کد ملی',data.nationalId],
+          ['نام پدر',data.fatherName],['جنسیت',data.gender],
+          ['محل صدور',data.issuePlace],['محل تولد',data.birthPlace],
+          ['تاریخ تولد',formatDateField(data.birthDate)],['وضعیت تأهل',data.maritalStatus],
+          ['تعداد فرزندان',data.childrenCount],['سمت',data.position],
+          ['نوع استخدام',data.employmentType],['مدرک تحصیلی',data.degree],
+          ['رشته تحصیلی',data.major],['سابقه',data.experienceYears],
+          ['نوع اشتغال',data.dutyType],['پایه',data.grade],
+          ['شماره کلاس',data.classNumber],['رابط',data.liaison],
+          ['شماره حساب',data.salaryAccount],['نوع بیمه',data.insuranceType],
+          ['نام همسر',data.spouseName],['شغل همسر',data.spouseJob],
+          ['شماره همراه',data.mobile],['شماره تلفن',data.phone],
+          ['کد پستی',data.postalCode],['نام تاییدکننده',data.approverName],
+          ['تاریخ تایید',formatDateField(data.approveDate)],['آدرس',data.address]
+        ].reduce((acc, [l,v], i) => {
+          if (i%2===0) acc += '<div class="row">';
+          acc += `<div class="field"><div class="field-label">${l}</div><div class="field-value">${v||''}</div></div>`;
+          if (i%2===1) acc += '</div>';
+          return acc;
+        }, '')}
+        <div class="approval-section"><div class="approval-line"><div class="approval-space">امضاء کارمند</div><div class="approval-space">امضاء مسئول</div></div></div>
+      </div></body></html>`;
+      const w = window.open('','_blank','width=800,height=600');
+      w.document.write(html); w.document.close();
+      setTimeout(()=>w.print(), 250);
     }
 
-    // چاپ کلی همه فرم‌ها
+    // ===== چاپ کلی فرم‌ها =====
     function printAllForms() {
-      if (allStaff.length === 0) {
-        showToast('داده‌ای برای چاپ وجود ندارد', 'warning');
+      if (!allStaff.length) { showToast('داده‌ای برای چاپ وجود ندارد', 'warning'); return; }
+      const printDate = new Date().toLocaleDateString('fa-IR');
+      const printTime = new Date().toLocaleTimeString('fa-IR', {hour:'2-digit',minute:'2-digit'});
+      let html = `<html dir="rtl"><head><meta charset="utf-8"><style>
+        *{margin:0;padding:0;font-family:Vazirmatn,Tahoma,Arial;}body{font-size:11px;line-height:1.4;padding:10px;}
+        .page-header{text-align:center;margin-bottom:20px;border-bottom:3px solid #000;padding-bottom:15px;}
+        .page-title{font-size:22px;font-weight:bold;margin-bottom:5px;}.page-subtitle{font-size:16px;color:#333;margin-bottom:10px;}
+        .page-info{font-size:12px;color:#666;margin-bottom:20px;display:flex;justify-content:space-between;padding:0 10px;}
+        .print-all-container{border:1px solid #000;padding:15px;margin-bottom:20px;page-break-inside:avoid;}
+        .staff-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px;padding-bottom:10px;border-bottom:2px solid #000;}
+        .staff-image{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid #000;flex-shrink:0;overflow:hidden;}
+        .staff-title-container{text-align:center;flex-grow:1;padding:0 15px;}
+        .staff-name{font-size:16px;font-weight:bold;margin:0;}.staff-details{font-size:12px;margin:3px 0 0 0;color:#666;}
+        .row{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+        .field{border:1px solid #000;padding:6px;display:flex;}
+        .field-label{font-weight:bold;width:40%;text-align:right;padding-left:8px;font-size:10px;}
+        .field-value{width:60%;text-align:right;border-left:1px solid #000;padding-right:6px;font-size:10px;}
+        .approval-section{margin-top:20px;padding-top:10px;border-top:1px solid #000;}
+        .approval-line{display:flex;justify-content:space-between;margin-top:20px;}
+        .approval-space{width:180px;border-bottom:1px solid #000;text-align:center;padding-bottom:4px;font-size:10px;}
+        .page-break{page-break-after:always;}
+        @media print{body{padding:5mm;}@page{size:A4;margin:5mm;}}
+      </style></head><body>
+      <div class="page-header"><div class="page-title">چاپ کلی فرم‌های پرسنلی</div><div class="page-subtitle">مدرسه شهیدان نیاسری 1</div>
+      <div class="page-info"><div>تعداد فرم‌ها: ${allStaff.length} فرم</div><div>تاریخ چاپ: ${printDate} - ساعت: ${printTime}</div></div></div>`;
+      allStaff.forEach((s,i)=>{
+        if (i>0&&i%2===0) html+='<div class="page-break"></div>';
+        html+=`<div class="print-all-container">
+          <div class="staff-header">
+            <div class="staff-image"><img src="https://i.imgur.com/eCxFZCM.jpeg" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"></div>
+            <div class="staff-title-container"><h3 class="staff-name">${s.firstName||''} ${s.lastName||''}</h3><p class="staff-details">کد پرسنلی: ${s.personnelCode||'–'} | کد ملی: ${s.nationalId||'–'}</p></div>
+            <div class="staff-image"><img src="https://i.imgur.com/VAsoxgf.jpeg" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"></div>
+          </div>
+          ${[['نام',s.firstName],['کد پرسنلی',s.personnelCode],['نام خانوادگی',s.lastName],['کد ملی',s.nationalId],
+             ['نام پدر',s.fatherName],['جنسیت',s.gender],['محل صدور',s.issuePlace],['محل تولد',s.birthPlace],
+             ['تاریخ تولد',formatDateField(s.birthDate)],['وضعیت تأهل',s.maritalStatus],
+             ['تعداد فرزندان',s.childrenCount],['سمت',s.position],['نوع استخدام',s.employmentType],['مدرک تحصیلی',s.degree],
+             ['رشته تحصیلی',s.major],['سابقه',s.experienceYears],['نوع اشتغال',s.dutyType],['پایه',s.grade],
+             ['شماره کلاس',s.classNumber],['رابط',s.liaison],['شماره حساب',s.salaryAccount],['نوع بیمه',s.insuranceType],
+             ['نام همسر',s.spouseName],['شغل همسر',s.spouseJob],['شماره همراه',s.mobile],['شماره تلفن',s.phone],
+             ['کد پستی',s.postalCode],['نام تاییدکننده',s.approverName],['تاریخ تایید',formatDateField(s.approveDate)],['آدرس',s.address]
+          ].reduce((acc,[l,v],i)=>{if(i%2===0)acc+='<div class="row">';acc+=`<div class="field"><div class="field-label">${l}</div><div class="field-value">${v||''}</div></div>`;if(i%2===1)acc+='</div>';return acc;},'')
+          }
+          <div class="approval-section"><div class="approval-line"><div class="approval-space">امضاء کارمند</div><div class="approval-space">امضاء مسئول</div></div></div>
+        </div>`;
+      });
+      html+=`<div style="margin-top:30px;padding-top:15px;border-top:2px solid #000;text-align:center;font-size:12px;color:#666;">تعداد کل فرم‌های چاپ شده: ${allStaff.length} فرم - تاریخ تولید: ${printDate}</div></body></html>`;
+      const w=window.open('','_blank','width=900,height=700');
+      w.document.write(html); w.document.close();
+      setTimeout(()=>w.print(),500);
+    }
+
+    // ===== جهت چاپ =====
+    let printOrientation = 'portrait';
+
+    function setOrientation(dir) {
+      printOrientation = dir;
+      document.getElementById('orientPortrait').classList.toggle('active', dir === 'portrait');
+      document.getElementById('orientLandscape').classList.toggle('active', dir === 'landscape');
+    }
+
+    // ===== لیست همکاران =====
+    function buildFieldsUI() {
+      const grid = document.getElementById('fieldsGrid');
+      grid.innerHTML = ALL_FIELDS.map(f => fieldHTML(f)).join('');
+    }
+
+    function fieldHTML(f) {
+      const isCustom = !!f.custom;
+      return `<label class="field-checkbox-label ${f.checked ? 'checked' : ''}" id="lbl_${f.key}" onclick="toggleField('${f.key}', this)">
+          <input type="checkbox" ${f.checked ? 'checked' : ''} id="chk_${f.key}">
+          <span class="check-icon">
+            <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4L4 7L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          ${f.label}
+          ${isCustom ? `<span class="del-field" onclick="event.stopPropagation();removeCustomField('${f.key}')" title="حذف این فیلد">✕</span>` : ''}
+        </label>`;
+    }
+
+    function toggleField(key, labelEl) {
+      const chk = document.getElementById('chk_' + key);
+      chk.checked = !chk.checked;
+      labelEl.classList.toggle('checked', chk.checked);
+      const f = ALL_FIELDS.find(x => x.key === key);
+      if (f) f.checked = chk.checked;
+      renderStaffTable();
+    }
+
+    function selectAllFields() {
+      ALL_FIELDS.forEach(f => {
+        f.checked = true;
+        const chk = document.getElementById('chk_' + f.key);
+        const lbl = document.getElementById('lbl_' + f.key);
+        if (chk) chk.checked = true;
+        if (lbl) lbl.classList.add('checked');
+      });
+      renderStaffTable();
+    }
+
+    function deselectAllFields() {
+      ALL_FIELDS.forEach(f => {
+        f.checked = false;
+        const chk = document.getElementById('chk_' + f.key);
+        const lbl = document.getElementById('lbl_' + f.key);
+        if (chk) chk.checked = false;
+        if (lbl) lbl.classList.remove('checked');
+      });
+      renderStaffTable();
+    }
+
+    function getSelectedFields() {
+      return ALL_FIELDS.filter(f => f.checked);
+    }
+
+    function renderStaffTable() {
+      const selected = getSelectedFields();
+      const thead = document.querySelector('#staffTable thead tr');
+      const tbody = document.getElementById('staffTableBody');
+      thead.innerHTML = '<th>#</th>' + selected.map(f => `<th>${f.label}</th>`).join('');
+      document.getElementById('listCountBadge').textContent = `${allStaff.length} نفر`;
+      if (!allStaff.length) {
+        tbody.innerHTML = `<tr class="empty-row"><td colspan="${selected.length+1}"><i class="fas fa-database" style="font-size:30px;margin-bottom:10px;opacity:0.3;display:block;"></i>داده‌ای بارگذاری نشده</td></tr>`;
         return;
       }
-      
-      const printDate = new Date().toLocaleDateString('fa-IR');
-      const printTime = new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
-      
-      let html = `
-        <html dir="rtl">
-        <head>
-          <meta charset="utf-8">
-          <style>
-            * { margin: 0; padding: 0; font-family: Vazirmatn, Tahoma, Arial; }
-            body { font-size: 11px; line-height: 1.4; padding: 10px; }
-            .page-header {
-              text-align: center;
-              margin-bottom: 20px;
-              border-bottom: 3px solid #000;
-              padding-bottom: 15px;
-            }
-            .page-title {
-              font-size: 22px;
-              font-weight: bold;
-              margin-bottom: 5px;
-            }
-            .page-subtitle {
-              font-size: 16px;
-              color: #333;
-              margin-bottom: 10px;
-            }
-            .page-info {
-              font-size: 12px;
-              color: #666;
-              margin-bottom: 20px;
-              display: flex;
-              justify-content: space-between;
-              padding: 0 10px;
-            }
-            .print-all-container { 
-              border: 1px solid #000; 
-              padding: 15px; 
-              margin-bottom: 20px;
-              page-break-inside: avoid;
-            }
-            .staff-header {
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              margin-bottom: 15px;
-              padding-bottom: 10px;
-              border-bottom: 2px solid #000;
-            }
-            .staff-image {
-              width: 70px;
-              height: 70px;
-              border-radius: 50%;
-              object-fit: cover;
-              border: 2px solid #000;
-              background: #f0f0f0;
-              flex-shrink: 0;
-              overflow: hidden;
-            }
-            .staff-title-container {
-              text-align: center;
-              flex-grow: 1;
-              padding: 0 15px;
-            }
-            .staff-name {
-              font-size: 16px;
-              font-weight: bold;
-              margin: 0;
-            }
-            .staff-details {
-              font-size: 12px;
-              margin: 3px 0 0 0;
-              color: #666;
-            }
-            .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-bottom: 0; }
-            .field { border: 1px solid #000; padding: 6px; display: flex; }
-            .field-label { font-weight: bold; width: 40%; text-align: right; padding-left: 8px; font-size: 10px; }
-            .field-value { width: 60%; text-align: right; border-left: 1px solid #000; padding-right: 6px; font-size: 10px; }
-            .approval-section {
-              margin-top: 20px;
-              padding-top: 10px;
-              border-top: 1px solid #000;
-              text-align: left;
-            }
-            .approval-line {
-              display: flex;
-              justify-content: space-between;
-              margin-top: 20px;
-            }
-            .approval-space {
-              width: 180px;
-              border-bottom: 1px solid #000;
-              text-align: center;
-              padding-bottom: 4px;
-              font-size: 10px;
-            }
-            .page-break { 
-              page-break-after: always; 
-            }
-            @media print { 
-              body { padding: 5mm; }
-              .print-all-container { border: 1px solid #000; }
-            }
-          </style>
-        </head>
-        <body>
-          <div class="page-header">
-            <div class="page-title">چاپ کلی فرم‌های پرسنلی</div>
-            <div class="page-subtitle">مدرسه شهیدان نیاسری 1</div>
-            <div class="page-info">
-              <div>تعداد فرم‌ها: ${allStaff.length} فرم</div>
-              <div>تاریخ چاپ: ${printDate} - ساعت: ${printTime}</div>
-            </div>
-          </div>
-      `;
-      
-      allStaff.forEach((staff, index) => {
-        // بعد از هر 2 فرم یک صفحه‌شکن اضافه کن (برای بهتر شدن چاپ)
-        if (index > 0 && index % 2 === 0) {
-          html += '<div class="page-break"></div>';
-        }
-        
-        html += `
-          <div class="print-all-container">
-            <div class="staff-header">
-              <div class="staff-image">
-                <img src="https://i.imgur.com/eCxFZCM.jpeg" 
-                     alt="شهید نیاسری" 
-                     style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
-              </div>
-              
-              <div class="staff-title-container">
-                <h3 class="staff-name">${staff.firstName || ''} ${staff.lastName || ''}</h3>
-                <p class="staff-details">کد پرسنلی: ${staff.personnelCode || '–'} | کد ملی: ${staff.nationalId || '–'}</p>
-              </div>
-              
-              <div class="staff-image">
-                <img src="https://i.imgur.com/VAsoxgf.jpeg" 
-                     alt="شهید نیاسری" 
-                     style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
-              </div>
-            </div>
-            
-            <div class="row">
-              <div class="field"><div class="field-label">نام</div><div class="field-value">${staff.firstName || ''}</div></div>
-              <div class="field"><div class="field-label">کد پرسنلی</div><div class="field-value">${staff.personnelCode || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">نام خانوادگی</div><div class="field-value">${staff.lastName || ''}</div></div>
-              <div class="field"><div class="field-label">کد ملی</div><div class="field-value">${staff.nationalId || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">نام پدر</div><div class="field-value">${staff.fatherName || ''}</div></div>
-              <div class="field"><div class="field-label">جنسیت</div><div class="field-value">${staff.gender || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">محل صدور</div><div class="field-value">${staff.issuePlace || ''}</div></div>
-              <div class="field"><div class="field-label">محل تولد</div><div class="field-value">${staff.birthPlace || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">تاریخ تولد</div><div class="field-value">${formatDateField(staff.birthDate) || ''}</div></div>
-              <div class="field"><div class="field-label">وضعیت تأهل</div><div class="field-value">${staff.maritalStatus || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">تعداد فرزندان</div><div class="field-value">${staff.childrenCount || ''}</div></div>
-              <div class="field"><div class="field-label">سمت</div><div class="field-value">${staff.position || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">نوع استخدام</div><div class="field-value">${staff.employmentType || ''}</div></div>
-              <div class="field"><div class="field-label">مدرک تحصیلی</div><div class="field-value">${staff.degree || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">رشته تحصیلی</div><div class="field-value">${staff.major || ''}</div></div>
-              <div class="field"><div class="field-label">سابقه</div><div class="field-value">${staff.experienceYears || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">نوع اشتغال</div><div class="field-value">${staff.dutyType || ''}</div></div>
-              <div class="field"><div class="field-label">پایه</div><div class="field-value">${staff.grade || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">شماره کلاس</div><div class="field-value">${staff.classNumber || ''}</div></div>
-              <div class="field"><div class="field-label">رابط</div><div class="field-value">${staff.liaison || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">شماره حساب</div><div class="field-value">${staff.salaryAccount || ''}</div></div>
-              <div class="field"><div class="field-label">نوع بیمه</div><div class="field-value">${staff.insuranceType || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">نام همسر</div><div class="field-value">${staff.spouseName || ''}</div></div>
-              <div class="field"><div class="field-label">شغل همسر</div><div class="field-value">${staff.spouseJob || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">شماره همراه</div><div class="field-value">${staff.mobile || ''}</div></div>
-              <div class="field"><div class="field-label">شماره تلفن</div><div class="field-value">${staff.phone || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">کد پستی</div><div class="field-value">${staff.postalCode || ''}</div></div>
-              <div class="field"><div class="field-label">نام تاییدکننده</div><div class="field-value">${staff.approverName || ''}</div></div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="field-label">تاریخ تایید</div><div class="field-value">${formatDateField(staff.approveDate) || ''}</div></div>
-              <div class="field"><div class="field-label">آدرس</div><div class="field-value">${staff.address || ''}</div></div>
-            </div>
-            
-            <div class="approval-section">
-              <div class="approval-line">
-                <div class="approval-space">امضاء کارمند</div>
-                <div class="approval-space">امضاء مسئول</div>
-              </div>
-            </div>
-          </div>
-        `;
-      });
-      
-      html += `
-          <div style="margin-top: 30px; padding-top: 15px; border-top: 2px solid #000; text-align: center; font-size: 12px; color: #666;">
-            تعداد کل فرم‌های چاپ شده: ${allStaff.length} فرم - تاریخ تولید: ${printDate}
-          </div>
-        </body>
-        </html>
-      `;
-      
-      const printWindow = window.open('', '_blank', 'width=900,height=700');
-      printWindow.document.write(html);
-      printWindow.document.close();
-      setTimeout(() => {
-        printWindow.print();
-      }, 500);
+      if (!selected.length) {
+        tbody.innerHTML = `<tr class="empty-row"><td colspan="1">هیچ ستونی انتخاب نشده</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = allStaff.map((s, i) =>
+        `<tr><td>${i+1}</td>${selected.map(f => {
+          const val = ['birthDate','approveDate'].includes(f.key) ? formatDateField(s[f.key]) : (s[f.key] || '–');
+          return `<td>${val}</td>`;
+        }).join('')}</tr>`
+      ).join('');
     }
 
-    // ثبت فرم معلم
+    function showStaffList() {
+      hideAllPages();
+      document.getElementById('staffListPage').classList.add('active');
+      buildFieldsUI();
+      renderStaffTable();
+    }
+
+    // ===== مودال افزودن فیلد =====
+    function openAddFieldModal() {
+      document.getElementById('newFieldLabel').value = '';
+      document.getElementById('newFieldKey').value = '';
+      document.getElementById('addFieldModal').classList.add('open');
+      setTimeout(()=>document.getElementById('newFieldLabel').focus(), 100);
+    }
+
+    function closeAddFieldModal() {
+      document.getElementById('addFieldModal').classList.remove('open');
+    }
+
+    function confirmAddField() {
+      const label = document.getElementById('newFieldLabel').value.trim();
+      const key   = document.getElementById('newFieldKey').value.trim().replace(/\s+/g,'');
+      if (!label) { showToast('عنوان ستون را وارد کنید', 'warning'); return; }
+      if (!key)   { showToast('کلید فیلد را وارد کنید', 'warning'); return; }
+      if (ALL_FIELDS.find(f => f.key === key)) { showToast('این کلید فیلد قبلاً وجود دارد', 'warning'); return; }
+      ALL_FIELDS.push({ key, label, checked: true, custom: true });
+      closeAddFieldModal();
+      // اضافه کردن به گرید
+      const grid = document.getElementById('fieldsGrid');
+      const newEl = document.createElement('div');
+      newEl.innerHTML = fieldHTML(ALL_FIELDS[ALL_FIELDS.length-1]);
+      grid.appendChild(newEl.firstElementChild);
+      renderStaffTable();
+      showToast(`ستون "${label}" اضافه شد`, 'success');
+    }
+
+    function removeCustomField(key) {
+      if (!confirm('این ستون سفارشی حذف شود؟')) return;
+      const idx = ALL_FIELDS.findIndex(f => f.key === key);
+      if (idx !== -1) ALL_FIELDS.splice(idx, 1);
+      const lbl = document.getElementById('lbl_' + key);
+      if (lbl) lbl.remove();
+      renderStaffTable();
+    }
+
+    // بستن مودال با کلیک روی پس‌زمینه
+    document.getElementById('addFieldModal').addEventListener('click', function(e) {
+      if (e.target === this) closeAddFieldModal();
+    });
+
+    // ===== چاپ لیست همکاران =====
+    function printStaffList() {
+      const selected = getSelectedFields();
+      if (!selected.length) { showToast('حداقل یک ستون انتخاب کنید', 'warning'); return; }
+      if (!allStaff.length)  { showToast('داده‌ای برای چاپ وجود ندارد', 'warning'); return; }
+
+      const printDate = new Date().toLocaleDateString('fa-IR');
+      const printTime = new Date().toLocaleTimeString('fa-IR', {hour:'2-digit',minute:'2-digit'});
+      const pageSize  = printOrientation === 'landscape' ? 'A4 landscape' : 'A4';
+      const orientLabel = printOrientation === 'landscape' ? 'افقی' : 'عمودی';
+
+      const html = `<html dir="rtl"><head><meta charset="utf-8"><title>لیست همکاران</title><style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Vazirmatn,Tahoma,Arial;}
+        body{font-size:11px;line-height:1.4;padding:10px;background:white;}
+        .print-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding-bottom:12px;border-bottom:3px solid #333;}
+        .martyrs-image{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid #333;flex-shrink:0;overflow:hidden;}
+        .title-block{text-align:center;flex-grow:1;padding:0 15px;}
+        .title-block h1{font-size:18px;font-weight:bold;margin:0 0 4px 0;}
+        .title-block h2{font-size:13px;font-weight:normal;color:#444;margin:0;}
+        .meta{display:flex;justify-content:space-between;font-size:10px;color:#555;margin-bottom:14px;padding:6px 10px;background:#f5f5f5;border-radius:4px;}
+        table{width:100%;border-collapse:collapse;font-size:11px;}
+        thead tr{background:#2d3748;color:white;}
+        thead th{padding:8px 10px;text-align:right;font-weight:600;border:1px solid #2d3748;font-size:11px;}
+        thead th:first-child{width:35px;text-align:center;}
+        tbody tr:nth-child(even){background:#f7f8fc;}
+        tbody tr:nth-child(odd){background:white;}
+        tbody td{padding:7px 10px;border:1px solid #ddd;text-align:right;vertical-align:middle;}
+        tbody td:first-child{text-align:center;font-weight:bold;color:#555;}
+        .footer{margin-top:20px;padding-top:10px;border-top:1px solid #ccc;display:flex;justify-content:space-between;font-size:10px;color:#777;}
+        @media print{body{padding:5mm;}@page{size:${pageSize};margin:8mm;}}
+      </style></head><body>
+        <div class="print-header">
+          <div class="martyrs-image"><img src="https://i.imgur.com/eCxFZCM.jpeg" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"></div>
+          <div class="title-block"><h1>مدرسه شهیدان نیاسری 1</h1><h2>لیست همکاران</h2></div>
+          <div class="martyrs-image"><img src="https://i.imgur.com/VAsoxgf.jpeg" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"></div>
+        </div>
+        <div class="meta">
+          <span>تعداد کل: ${allStaff.length} نفر</span>
+          <span>تاریخ چاپ: ${printDate} - ساعت: ${printTime}</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              ${selected.map(f=>`<th>${f.label}</th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            ${allStaff.map((s,i)=>`
+              <tr>
+                <td>${i+1}</td>
+                ${selected.map(f=>{
+                  const v=['birthDate','approveDate'].includes(f.key)?formatDateField(s[f.key]):(s[f.key]||'');
+                  return `<td>${v}</td>`;
+                }).join('')}
+              </tr>`).join('')}
+          </tbody>
+        </table>
+        <div class="footer">
+          <span>مدرسه شهیدان نیاسری 1 - اداره آموزش و پرورش منطقه 3 کرج | جهت چاپ: ${orientLabel}</span>
+          <span>ستون‌های انتخابی: ${selected.map(f=>f.label).join(' | ')}</span>
+        </div>
+      </body></html>`;
+
+      const w = window.open('','_blank','width=1000,height=700');
+      w.document.write(html); w.document.close();
+      setTimeout(()=>w.print(), 350);
+    }
+
+    // ===== ثبت فرم معلم =====
     async function submitTeacherForm(e) {
       e.preventDefault();
       const data = collectFormData('teacherForm');
-      const params = { action: 'create', ...data };
       try {
-        const json = await callAPI(params);
-        if (json?.status === 'success') {
-          showToast('اطلاعات با موفقیت ثبت شد', 'success');
+        const json = await callAPI({ action: 'create', ...data });
+        if (json?.status==='success') {
+          showToast('اطلاعات با موفقیت ثبت شد','success');
           document.getElementById('teacherForm').reset();
-          setTimeout(() => {
-            loadStaffCountForMainPage();
-            loadAllData();
-            backToMain();
-          }, 1500);
-        } else {
-          showToast('خطا در ثبت اطلاعات: ' + (json?.message || 'نامشخص'), 'danger');
-        }
-      } catch (err) {
-        showToast('خطا در ارسال اطلاعات', 'danger');
-        console.error('submitTeacherForm error:', err);
-      }
+          setTimeout(()=>{ loadStaffCountForMainPage(); loadAllData(); backToMain(); },1500);
+        } else showToast('خطا در ثبت: '+(json?.message||'نامشخص'),'danger');
+      } catch(err) { showToast('خطا در ارسال','danger'); }
     }
 
-    // ثبت فرم مدیر
+    // ===== ثبت فرم مدیر =====
     async function submitAdminForm(e) {
       e.preventDefault();
       const data = collectFormData('adminForm');
       const key = data.personnelCode || data.nationalId;
-
-      if (!key) {
-        showToast('کد پرسنلی یا کد ملی الزامی است', 'warning');
-        return;
-      }
-
-      const action = currentIndex === -1 ? 'create' : 'update';
+      if (!key) { showToast('کد پرسنلی یا کد ملی الزامی است','warning'); return; }
+      const action = currentIndex===-1 ? 'create' : 'update';
       const params = { action, ...data };
-      if (action === 'update') params.key = key;
-
+      if (action==='update') params.key = key;
       try {
         const json = await callAPI(params);
-        if (json?.status === 'success') {
-          showToast(`اطلاعات با موفقیت ${action === 'create' ? 'ثبت' : 'ویرایش'} شد`, 'success');
-          setTimeout(() => {
-            loadStaffCountForMainPage();
-            loadAllData();
-            backToSearch();
-          }, 1000);
-        } else {
-          showToast('خطا در ذخیره اطلاعات: ' + (json?.message || 'نامشخص'), 'danger');
-        }
-      } catch (err) {
-        showToast('خطا در ارسال اطلاعات', 'danger');
-        console.error('submitAdminForm error:', err);
-      }
+        if (json?.status==='success') {
+          showToast(`اطلاعات با موفقیت ${action==='create'?'ثبت':'ویرایش'} شد`,'success');
+          setTimeout(()=>{ loadStaffCountForMainPage(); loadAllData(); backToSearch(); },1000);
+        } else showToast('خطا: '+(json?.message||'نامشخص'),'danger');
+      } catch(err) { showToast('خطا در ارسال','danger'); }
     }
 
-    // ویرایش رکورد
     function editRecord() {
-      if (currentIndex === -1) {
-        showToast('ابتدا یک رکورد را انتخاب کنید', 'warning');
-        return;
-      }
-      showToast('اطلاعات را ویرایش کرده و دکمه ذخیره را بزنید', 'info');
+      if (currentIndex===-1) { showToast('ابتدا یک رکورد را انتخاب کنید','warning'); return; }
+      showToast('اطلاعات را ویرایش کرده و دکمه ذخیره را بزنید','info');
     }
 
-    // حذف رکورد
     async function deleteRecord() {
-      if (currentIndex === -1) {
-        showToast('ابتدا یک رکورد را انتخاب کنید', 'warning');
-        return;
-      }
-
-      if (!confirm('آیا از حذف این رکورد مطمئن هستید؟ این عمل قابل بازگشت نیست.')) {
-        return;
-      }
-
+      if (currentIndex===-1) { showToast('ابتدا یک رکورد را انتخاب کنید','warning'); return; }
+      if (!confirm('آیا از حذف این رکورد مطمئن هستید؟')) return;
       const data = collectFormData('adminForm');
       const key = data.personnelCode || data.nationalId;
-
-      if (!key) {
-        showToast('رکورد معتبری انتخاب نشده است', 'warning');
-        return;
-      }
-
+      if (!key) { showToast('رکورد معتبری انتخاب نشده','warning'); return; }
       try {
-        const json = await callAPI({ action: 'delete', key });
-        if (json?.status === 'success') {
-          showToast('رکورد با موفقیت حذف شد', 'success');
-          setTimeout(() => {
-            loadStaffCountForMainPage();
-            loadAllData();
-            backToSearch();
-          }, 1000);
-        } else {
-          showToast('خطا در حذف رکورد: ' + (json?.message || 'نامشخص'), 'danger');
-        }
-      } catch (err) {
-        showToast('خطا در ارسال درخواست حذف', 'danger');
-        console.error('deleteRecord error:', err);
-      }
+        const json = await callAPI({ action:'delete', key });
+        if (json?.status==='success') {
+          showToast('رکورد حذف شد','success');
+          setTimeout(()=>{ loadStaffCountForMainPage(); loadAllData(); backToSearch(); },1000);
+        } else showToast('خطا: '+(json?.message||'نامشخص'),'danger');
+      } catch(err) { showToast('خطا در حذف','danger'); }
     }
 
-    // جستجوی زنده
+    // ===== رویدادها =====
     document.getElementById('searchInput').addEventListener('input', function() {
       const q = this.value.trim().toLowerCase();
-      
-      if (q.length === 0) {
-        filteredStaff = [...allStaff];
-      } else {
-        filteredStaff = allStaff.filter(item => {
-          const lastName = String(item.lastName || '').toLowerCase();
-          const firstName = String(item.firstName || '').toLowerCase();
-          const code = String(item.personnelCode || '').toLowerCase();
-          const nationalId = String(item.nationalId || '').toLowerCase();
-          
-          return lastName.includes(q) || 
-                 firstName.includes(q) || 
-                 code.includes(q) || 
-                 nationalId.includes(q);
-        });
-      }
-      
+      filteredStaff = !q ? [...allStaff] : allStaff.filter(item =>
+        [item.lastName, item.firstName, item.personnelCode, item.nationalId]
+          .some(v => String(v||'').toLowerCase().includes(q))
+      );
       displaySearchResults();
     });
+    document.getElementById('passwordInput').addEventListener('keyup', e=>{ if(e.key==='Enter') checkPassword(); });
+    document.getElementById('searchInput').addEventListener('keyup', e=>{ if(e.key==='Enter') performSearch(); });
 
-    // ورود با دکمه Enter در رمز عبور
-    document.getElementById('passwordInput').addEventListener('keyup', function(e) {
-      if (e.key === 'Enter') {
-        checkPassword();
-      }
-    });
-
-    // ورود با دکمه Enter در جستجو
-    document.getElementById('searchInput').addEventListener('keyup', function(e) {
-      if (e.key === 'Enter') {
-        performSearch();
-      }
-    });
-
-    // راه‌اندازی اولیه
-    loadStaffCountForMainPage(); // بارگذاری تعداد برای صفحه اصلی
-    
-    // به‌روزرسانی خودکار هر 30 ثانیه برای صفحه اصلی
-    setInterval(() => {
-      if (document.getElementById('mainPage').classList.contains('active')) {
-        loadStaffCountForMainPage();
-      }
+    // ===== راه‌اندازی =====
+    loadStaffCountForMainPage();
+    setInterval(()=>{
+      if (document.getElementById('mainPage').classList.contains('active')) loadStaffCountForMainPage();
       if (document.getElementById('searchPage').classList.contains('active') ||
-          document.getElementById('adminFormPage').classList.contains('active')) {
-        loadAllData();
-      }
+          document.getElementById('adminFormPage').classList.contains('active')) loadAllData();
     }, 30000);
   </script>
 </body>
